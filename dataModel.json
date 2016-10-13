@@ -1,0 +1,4 @@
+changes = {
+  stateChanges: [["1st edited node", change], "2nd edited node", "3rd edit"],
+  someEditThing: []
+}
