@@ -5,6 +5,14 @@ gem 'figaro'
 gem 'httparty'
 gem 'awesome_print', require: 'ap'
 
+#angular
+gem 'angularjs-rails'
+gem 'angular_rails_csrf'
+
+source "https://rails-assets.org" do
+  gem "rails-assets-angular-devise"
+end
+
 #devise
 gem 'devise'
 
