@@ -13,23 +13,28 @@ frontApp.controller('CommunityIndexCtrl',
   $scope.templates = {
     1 : {
       id: 1,
-      url: 'https://startbootstrap.com/img/templates/creative.jpg'
+      url: 'https://startbootstrap.com/img/templates/creative.jpg',
+      linkTo: 'https://blackrockdigital.github.io/startbootstrap-stylish-portfolio/'
     },
     2 : {
       id: 2,
-      url: 'https://startbootstrap.com/img/templates/new-age.jpg'
+      url: 'https://startbootstrap.com/img/templates/new-age.jpg',
+      linkTo: 'https://blackrockdigital.github.io/startbootstrap-stylish-portfolio/'
     },
     3 : {
       id: 3,
-      url: 'https://startbootstrap.com/img/templates/agency.jpg'
+      url: 'https://startbootstrap.com/img/templates/agency.jpg',
+      linkTo: 'https://blackrockdigital.github.io/startbootstrap-stylish-portfolio/'
     },
     4 : {
       id: 4,
-      url: 'https://startbootstrap.com/img/premium/vitality.jpg'
+      url: 'https://startbootstrap.com/img/premium/vitality.jpg',
+      linkTo: 'https://blackrockdigital.github.io/startbootstrap-stylish-portfolio/'
     },
     5 : {
       id: 5,
-      url: 'https://startbootstrap.com/img/templates/stylish-portfolio.jpg'
+      url: 'https://startbootstrap.com/img/templates/stylish-portfolio.jpg',
+      linkTo: 'https://blackrockdigital.github.io/startbootstrap-stylish-portfolio/'
     }
   };
 
@@ -95,11 +100,6 @@ frontApp.controller('CommunityIndexCtrl',
       recordHistory: true,
     });
   });
-
-  
-
-
-
 }]);
 
 
