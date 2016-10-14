@@ -12,5 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require angular
+//= require angular-ui-router
+//= require angular-modal-service.min
+//= require angular-devise
+//= require xeditable
+//= require lodash.min
+//= require restangular
+//= require jquery.fullPage
 //= require_tree .
+
