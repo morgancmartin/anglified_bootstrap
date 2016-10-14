@@ -1,0 +1,26 @@
+<div id="fullpage">
+    <div class="section" style="background-image: url('/assets/bg-cta.jpg')">
+    <h1>Welcome to Anglify BootStrap</h1>
+      <button id="moveDown" class="btn btn-outline-primary btn-lg"> 
+        Get Started
+      </button>
+    </div>
+    <div class="section">
+      <div class="slide" data-anchor="slide1" style="background: yellow">
+        (Animate) Choose Your Template...
+      </div>
+      <div class="slide bg-faded" data-anchor="slide2" style="background-image: url('/assets/pokepoke.jpg')">
+      </div>
+    </div>
+</div>
+
+<script>
+  $('#fullpage').fullpage({
+
+  });
+
+  //adding the action to the button
+  $(document).on('click', '#moveDown', function(){
+    $.fn.fullpage.moveSectionDown();
+});
+</script>
