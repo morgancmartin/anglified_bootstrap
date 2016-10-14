@@ -21,31 +21,28 @@
           </span>
         </div>
       </div>
-      <div class="slide bg-faded" id="slide2" data-anchor="slide2">
+      <div class="slide bg-faded" data-anchor="slide2">
 
 
         <div class="section">
           <div class="container">
-               <!--Card-->
-            <div class="card col-xs-3" ng-repeat="template in templates">
-
-                <!--Card image-->
-                <div class="view overlay hm-white-slight waves effect">
-                    <img src="{{template.url}}" class="img-fluid" alt="">
-                </div>
-
-                <!--Card content-->
-                <!-- <div class="card-block" style="height: 100px">
-                    
-                    <h4 class="card-title">
-                      Template #{{template.id}}
-                      <a class="btn btn-primary waves-effect">Button</a>
-                    </h4>
-                </div> -->
-                <!--/.Card content-->
-
+            <!--Card-->
+            <div ng-click="selectTemplate(template.id)" class="template-cards card col-xs-3" ng-repeat="template in templates" id="template{{template.id}}">
+              <!--Card image-->
+              <div class="view overlay hm-white-slight waves effect">
+                  <img src="{{template.url}}" class="img-fluid" alt="">
+                  <a>
+                      <div class="mask"></div>
+                  </a>
+              </div>
             </div>
             <!--/.Card-->
+
+            <button type="button" 
+                    ng-click="go()" 
+                    id="submit-template" 
+                    ng-if="isSelection()"
+                    class="btn btn-warning btn-lg btn-block">Create your Portfolio Website!</button>
 
           </div>
         </div>
