@@ -274,6 +274,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (~> 3.0.5)
+  nokogiri
   pg
   pry-byebug
   puma (~> 3.0)
