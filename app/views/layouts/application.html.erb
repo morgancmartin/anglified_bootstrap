@@ -18,17 +18,8 @@
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
 
-    <!-- Bstrp4 -->
-    <link <%= content_for(:bs4_community) %>>
-
-    <!--md bootstrap -->
-    <link <%= content_for(:mdb_community) %>>
-
-    <!-- For Templates Edit Page -->
-    <!-- Custom Fonts -->
-    <link <%= content_for(:lato_font) %>>
-    <link <%= content_for(:catamaran_font) %>>
-    <link <%= content_for(:muli_font) %>>
+    <!-- Bstrp4 , MDBootstrap for community page-->
+    <%= yield :community_cdns %>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,13 +28,17 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- For Templates Edit Page -->
+    <!-- ___ for templates page -->
+    <%= yield :templates_fonts %>
+
     <!-- Plugin JavaScript -->
     <script <%= content_for(:plugin_js) %>></script>
-
-
   </head>
 
   <body <%= content_for(:body_id) %>>
+    <p class="notice" ng-if="notice"><%= notice %></p>
+    <p class="alert" ng-if="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
