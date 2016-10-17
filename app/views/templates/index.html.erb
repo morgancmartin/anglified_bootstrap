@@ -53,7 +53,7 @@
   </nav>
 
   <button class='next-state-btn' ng-click='nextState()'>Next State</button>
-  <header edit-states='pageWatch.editStates' node-form='node' ng-animate='animate' id='main-header' show-hide current-state='states[count]' data-slide="home">
+  <header edit-states='pageWatch.editStates' ng-animate='animate' id='main-header' show-hide current-state='states[count]' data-slide="home">
       <div class="container">
           <div class="row">
               <div class="col-sm-7">
@@ -91,7 +91,7 @@
       </div>
   </header>
 
-  <section node-form='node'  show-hide current-state='states[count]' id="download" class="download bg-primary text-center" data-slide="home">
+  <section  show-hid  id="download" class="download bg-primary text-center" data-slide="home">
     <button ng-click='getNodes()'>Testing get nodes</button>
     <!-- CREATE SLIDE -->
     <button ng-click='createSlide($event)' class='create-slide'>Make New Slide</button>
@@ -113,7 +113,7 @@
       </div>
   </section>
 
-  <section node-form='node' show-hide current-state='states[count]' id="features" class="features" data-slide="home">
+  <section show-hide id="features" class="features" data-slide="home">
     <!-- CREATE SLIDE -->
     <button ng-click='createSlide($event)' class='create-slide'>Make New Slide</button>
     <!-- CHECKBOX -->
@@ -183,7 +183,7 @@
           </div>
   </section>
 
-  <section node-form='node' show-hide current-state='states[count]' class="cta" data-slide="home">
+  <section show-hide class="cta" data-slide="home">
       <div class="cta-content">
           <div class="container">
               <!-- CREATE SLIDE -->
@@ -198,7 +198,7 @@
       <div class="overlay"></div>
   </section>
 
-  <section node-form='node' show-hide current-state='states[count]' id="contact" class="contact bg-primary" data-slide="home">
+  <section show-hide id="contact" class="contact bg-primary" data-slide="home">
     <!-- CHECKBOX -->
     <to-checkbox ng-show='editStates.section'></to-checkbox>
     <button ng-hide='editStates.section' class='edit-slide-btn'>edit</button>
