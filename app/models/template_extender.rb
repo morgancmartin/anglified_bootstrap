@@ -1,10 +1,18 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
+require 'open-uri'
+
 class TemplateExtender
   attr_reader :doc
 
-  def initialize
-    @doc = File.open("public/templates/new-age/index.html") do |f|
-      Nokogiri::HTML(f)
+  def initialize(file_name = nil)
+    if file_name
+      file_loc = "https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-#{file_name}/master/index.html"
+      @doc = Nokogiri::HTML(open(file_loc))
+      @file_name = file_name
+    else
+      @doc = File.open("public/templates/new-age/index.html") do |f|
+        Nokogiri::HTML(f)
+      end
     end
   end
 
@@ -26,10 +34,15 @@ class TemplateExtender
         add_section_attributes(node)
       elsif tiny_mce_node?(type)
         node['class'] = 'textable'
+        change_img_src(node) if type == 'img'
       elsif type == 'body'
         add_sidebar_to_body(node)
       end
     end
+  end
+
+  def change_img_src(node)
+    node['src'] = "/#{@file_name}/#{node['src']}"
   end
 
   def add_sidebar_to_body(body_node)
@@ -65,11 +78,13 @@ class TemplateExtender
   end
 
   def add_elements(node)
-    [create_button, submit_button, to_checkbox_directive, edit_button].each do |element|
-      if node.children.empty?
-        node.add_child(element)
-      else
-        node.children.first.add_previous_sibling(element)
+    if node
+      [create_button, submit_button, to_checkbox_directive, edit_button].each do |element|
+        if node.children.empty?
+          node.add_child(element)
+        else
+          node.children.first.add_previous_sibling(element)
+        end
       end
     end
   end
@@ -81,10 +96,10 @@ class TemplateExtender
   def tiny_mce_node?(type)
     type == 'p' ||
       type == 'a' ||
-    type == 'h1' ||
-    type == 'h2' ||
-    type == 'h3' ||
-    type == 'img'
+      type == 'h1' ||
+      type == 'h2' ||
+      type == 'h3' ||
+      type == 'img'
   end
 
   def create_button
@@ -108,20 +123,5 @@ class TemplateExtender
     checkbox['ng-show'] = 'editStates.section'
     checkbox
   end
-
-
-
-
-
-# -add data-ids to every tag
-# -add css id’s (uniq) to each tag
-# -add every <section>/<header> tags add data-slide=“home” & show-hide directive
-  # class = 'textable'
-
-# -add xeditable info from below
-  # ex for xeditable)) <h1 id=“one" data-id=“one"><a href="#" editable-text=“page.one">{{ page.one || "empty" }}</a></h1>
-
-
-  # end
 
 end

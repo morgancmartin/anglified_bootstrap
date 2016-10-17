@@ -9,7 +9,7 @@
 Html.destroy_all
 p "HTML is destroyed along with all its dependencies"
 
-3.times do 
+3.times do
   curr = User.first.htmls.create(
     {
       body: "<html>
@@ -27,7 +27,7 @@ p "HTML is destroyed along with all its dependencies"
     })
 
     p "Javascript id: #{js.id} initialized"
-    
+
     css = curr.styles.create({
       body: "*  {border: 1px solid grey}"
     })
@@ -35,3 +35,4 @@ p "HTML is destroyed along with all its dependencies"
     p "Style id: #{css.id} initialized"
   end
 end
+
