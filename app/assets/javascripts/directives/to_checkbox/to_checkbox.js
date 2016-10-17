@@ -1,7 +1,7 @@
 app.directive('toCheckbox', [ function() {
   return {
     restrict: 'E',
-    templateUrl: 'to_checkbox/to_checkbox.html',
+    templateUrl: 'templates/to_checkbox/to_checkbox.html',
     scope: {
       nodeForm: '='
     },
