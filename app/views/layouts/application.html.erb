@@ -18,13 +18,10 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
 
     <!-- Bstrp4 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+    <link <%= content_for(:bs4_community) %>>
 
     <!--md bootstrap -->
-    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.min.css'>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/js/mdb.min.js'>
-
-
+    <link <%= content_for(:mdb_community) %>>
 
     <!-- from slideTest -->
     <!-- Bootstrap Core CSS -->
@@ -53,7 +50,10 @@
     <![endif]-->
 
     <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script <%= content_for(:plugin_js) %>></script>
+
+    <%= yield :templates_fonts %>
+
 
   </head>
 
