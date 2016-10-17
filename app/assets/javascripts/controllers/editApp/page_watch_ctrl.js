@@ -1,10 +1,10 @@
 app.controller('PageWatchCtrl',
-['$scope', '$', '$rootScope', "_", 'submitService',
-function($scope, $, $rootScope, _, submitService){
-  var elements = $('body *');
+['$scope', '$rootScope', "_", 'submitService',
+function($scope, $rootScope, _, submitService){
+  var elements = angular.element('body *');
 
   for (var i =1; i < ( 1 + elements.length ); i++){
-    $(elements[i]).attr('data-id', i);
+    angular.element(elements[i]).attr('data-id', i);
   }
   // compare element's id with currentstate; if match { show }
 
@@ -24,9 +24,9 @@ function($scope, $, $rootScope, _, submitService){
   // Clicking 'make a new slide' on a section/header/footer
   // should take it out of the main page and give it its own slide.
   $scope.createSlide = function($event){
-    var slideTag = $($event.currentTarget).closest('section');
+    var slideTag = angular.element($event.currentTarget).closest('section');
     if (!slideTag.length){
-      slideTag = $($event.currentTarget).closest('header');
+      slideTag = angular.element($event.currentTarget).closest('header');
     }
 
     slideTag.attr('data-slide', $scope.states.length);
