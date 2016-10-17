@@ -78,5 +78,15 @@ function(RestangularProvider, $stateProvider, $urlRouterProvider){
           controllerAs: 'blog'
         }
       }
+    })
+    .state('slides.comments', {
+      url: 'comments',
+      views: {
+        '@': {
+          templateUrl: 'templates/choose_resource/comments_preview.html',
+          controller: 'CommentsPreviewCtrl',
+          controllerAs: 'comments'
+        }
+      }
     });
 }]);
