@@ -7,9 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Html.destroy_all
+User.destroy_all
 p "HTML is destroyed along with all its dependencies"
 
-3.times do 
+User.create(email: "adrian@girl4lyfe.com", password: "password")
+
+3.times do
   curr = User.first.htmls.create(
     {
       body: "<html>
@@ -27,7 +30,7 @@ p "HTML is destroyed along with all its dependencies"
     })
 
     p "Javascript id: #{js.id} initialized"
-    
+
     css = curr.styles.create({
       body: "*  {border: 1px solid grey}"
     })
