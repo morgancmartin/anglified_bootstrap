@@ -15,6 +15,7 @@ end
 
 #devise
 gem 'devise'
+gem 'omniauth-github'
 
 group :development do
   gem 'hirb'
