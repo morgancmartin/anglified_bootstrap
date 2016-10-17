@@ -30,6 +30,8 @@ function($scope, $, $rootScope, _, submitService){
     }
 
     slideTag.attr('data-slide', $scope.states.length);
+    // Tell checkbox to call its getDataSlide function.
+    $scope.$broadcast('states.getDataSlide');
     $scope.states.push(slideTag.attr('data-slide'));
     $scope.nextState($scope.states.length);
   };
