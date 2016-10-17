@@ -6,18 +6,33 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts "Destroying users"
 
-User.destroy_all
+Html.destroy_all
+p "HTML is destroyed along with all its dependencies"
 
-puts "Done!"
+3.times do
+  curr = User.first.htmls.create(
+    {
+      body: "<html>
+              <head>
+              </head>
+              <body>
+              </body>
+            </html>"
+    });
+  p "HTML id: #{curr.id} initialized"
 
-puts "Creating users"
-10.times do |n|
-  User.create!({
-    email: Faker::Internet.email,
-    password: 'dsadsdasdasasdsadadada'
+  2.times do
+    js = curr.javascripts.create({
+      body: "console.log('kekek')"
     })
-end
 
-puts "Done!"
+    p "Javascript id: #{js.id} initialized"
+
+    css = curr.styles.create({
+      body: "*  {border: 1px solid grey}"
+    })
+
+    p "Style id: #{css.id} initialized"
+  end
+end
