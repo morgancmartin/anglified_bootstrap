@@ -5,6 +5,14 @@ gem 'figaro'
 gem 'httparty'
 gem 'awesome_print', require: 'ap'
 
+#angular
+gem 'angularjs-rails'
+gem 'angular_rails_csrf'
+
+source "https://rails-assets.org" do
+  gem "rails-assets-angular-devise"
+end
+
 #devise
 gem 'devise'
 
@@ -67,3 +75,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "octokit", "~> 4.0"

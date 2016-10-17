@@ -1,0 +1,54 @@
+<%= content_for(:angular_app) do %>
+  ng-app="indexApp"
+  ng-controller="CommunityIndexCtrl"
+<% end %>
+
+<div id="fullpage">
+    <div class="section" id="main" style="background-image: url('/assets/bg-cta.jpg')">
+    <h1>Welcome to Anglify BootStrap</h1>
+      <button ng-click="getStarted()" 
+            class="btn btn-primary-outline waves-effect btn-lg"> 
+        Get Started
+      </button>
+    </div>
+    <div class="section" data-anchor="/choose">
+      <div class="slide" data-anchor="slide1" style="background: yellow">
+        <div class="section">
+          
+          <span>
+            <h3 class="starting">Let's Get Started... </h3>
+            <a id="go-to" class="fa fa-arrow-circle-right" aria-hidden="true"></a>
+          </span>
+        </div>
+      </div>
+      <div class="slide bg-faded" data-anchor="slide2">
+
+
+        <div class="section">
+          <div class="container">
+            <!--Card-->
+            <div ng-click="selectTemplate(template.id)" class="template-cards card col-xs-3" ng-repeat="template in templates" id="template{{template.id}}">
+              <!--Card image-->
+              <div class="view overlay hm-white-slight waves effect">
+                  <img src="{{template.url}}" class="img-fluid" alt="">
+                  <a href="{{template.linkTo}}" 
+                  target="_blank" class="btn btn-md btn-success"> Preview </a>
+                
+              </a>
+              </div>
+
+            </div>
+
+            <!--/.Card-->
+
+            <button type="button" 
+                    ng-click="go()" 
+                    id="submit-template" 
+                    ng-if="isSelection()"
+                    class="btn btn-warning btn-lg btn-block">Create your Portfolio Website!</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
