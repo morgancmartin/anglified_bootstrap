@@ -103,4 +103,6 @@ app.factory('ResourceGenerator',
     }]);
   };
 
+  return srv;
+
 }]);

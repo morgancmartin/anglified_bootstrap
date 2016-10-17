@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   scope :api do
     scope :v1 do
       resources :templates, only: [:create]
+
+      # delete this when finished
+      resources :testings
     end
   end
 
