@@ -30,10 +30,12 @@ app.factory('submitService',
     var output = {};
     _.each(collection, function(slide){
       var slides = $obj.find("[data-slide='" + slide +"']");
-      output[slide] = {};
+      // output[slide] = {};
+      output[slide] = [];
       slides.each(function(index, element){
         var $element = _cleanAttrs(element);
-        output[slide][index] =  $element.prop('outerHTML');
+        // output[slide][index] =  $element.prop('outerHTML');
+        output[slide].push($element.prop('outerHTML'));
       });
     });
     return output;
