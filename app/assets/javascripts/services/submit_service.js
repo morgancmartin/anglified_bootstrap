@@ -5,9 +5,9 @@ app.factory('submitService', ["_", "Restangular", function(_, Restangular) {
     var $body = angular.element('body').clone();
     $body = _removeEditor($body);
     output = _slideSplice($body, slideStack);
-    console.log(output);
-    return Promise.resolve(output);
-    // return Restangular.all("templates").post(output)
+    // console.log(output);
+    // return Promise.resolve(output);
+    return Restangular.all("templates").post(output);
   };
 
   var _slideSplice = function($obj, collection){
