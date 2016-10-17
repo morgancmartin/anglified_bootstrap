@@ -6,7 +6,7 @@ frontApp.controller('CommunityIndexCtrl',
 
   $scope.isSelection = function () {
     return $scope.selected;
-  }
+  };
 
   console.log('you are in communityIndex controller');
 
@@ -41,7 +41,7 @@ frontApp.controller('CommunityIndexCtrl',
   var textAnimate = function() {
      return $('.starting').hide().delay(700).show(1000).delay(1000);
   }
-  
+
   $scope.getStarted = function() {
     $.fn.fullpage.moveSectionDown();
 
@@ -58,7 +58,7 @@ frontApp.controller('CommunityIndexCtrl',
       $('#template'+template_id).toggleClass('bg-primary active');
       $scope.selected = template_id;
     }
-    
+
   };
 
   $scope.go = function() {
@@ -67,7 +67,7 @@ frontApp.controller('CommunityIndexCtrl',
   }
 
   // same as $(document).ready. FullPageJSes the page.
-  angular.element(document).ready(function () {  
+  angular.element(document).ready(function () {
     $('#fullpage').fullpage({
       //Scrolling
       css3: true,
@@ -101,5 +101,3 @@ frontApp.controller('CommunityIndexCtrl',
     });
   });
 }]);
-
-
