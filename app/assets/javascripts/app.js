@@ -40,6 +40,10 @@ app.factory('_', ['$window', function($window){
   return $window._;
 }]);
 
+app.factory('pluralize', ['$window', function($window){
+  return $window.pluralize;
+}]);
+
 app.config(['RestangularProvider',
 function(RestangularProvider){
   // Restangular

@@ -24,5 +24,6 @@
 //= require xeditable
 //= require lodash.min
 //= require restangular
+//= require pluralize
 //= require jquery.fullPage
 //= require_tree .
