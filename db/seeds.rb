@@ -23,7 +23,10 @@ end
 puts "Done!"
 
 Html.destroy_all
+User.destroy_all
 p "HTML is destroyed along with all its dependencies"
+
+User.create(email: "adrian@girl4lyfe.com", password: "password")
 
 3.times do
   curr = User.first.htmls.create(
