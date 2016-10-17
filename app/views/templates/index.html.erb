@@ -1,0 +1,233 @@
+<!DOCTYPE html >
+<%= content_for(:angular_app) do %>
+  ng-app="editApp"
+  ng-controller="PageWatchCtrl as pageWatch"
+<% end %>
+
+<%= content_for(:body_id) do %>
+  id="page-top"
+<% end %>
+
+<side-bar class='sidebar'></side-bar>
+
+<!-- FORM FOR CHECKBOXES -->
+<!-- <form ng-submit='saveNodes()' class='form-group'> -->
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+              </button>
+              <a class="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <li>
+                      <a ng-click='' class="page-scroll" href="#download">Download</a>
+                  </li>
+                  <li>
+                      <a class="page-scroll" href="#features">Features</a>
+                  </li>
+                  <li>
+                      <a class="page-scroll" href="#contact">Contact</a>
+                  </li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+  </nav>
+
+  <button class='next-state-btn' ng-click='nextState()'>Next State</button>
+  <header edit-states='pageWatch.editStates' node-form='node' ng-animate='animate' id='main-header' show-hide current-state='states[count]' data-slide="home">
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-7">
+                  <div class="header-content">
+                      <div class="header-content-inner">
+                          <!-- CREATE SLIDE -->
+                          <button class='create-slide' ng-click='createSlide($event)'>Make New Slide</button>
+                          <button class='create-slide' ng-click='submitPage()'>Submit</button>
+                          <!-- CHECKBOX -->
+                          <to-checkbox ng-show='editStates.section'></to-checkbox>
+
+                          <button ng-hide='editStates.section' class='edit-slide-btn'>edit</button>
+
+                          <h1>New Age is an app landing page that will help you beautifully showcase your new mobile app, or anything else!</h1>
+                          <to-checkbox node-form='nodeForm'></to-checkbox>
+                          <h1><a href="#" editable-text="page.h1a">{{ page.h1a || "empty" }}</a></h1>
+                          <a href="#download" class="btn btn-outline btn-xl page-scroll">Start Now for Free!</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-5">
+                  <div class="device-container">
+                      <div class="device-mockup iphone6_plus portrait white">
+                          <div class="device">
+                              <div class="screen">
+                                  <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                                  <img src="img/demo-screen-1.jpg" class="img-responsive" alt="">
+                              </div>
+                              <div class="button">
+                                  <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <section node-form='node'  show-hide current-state='states[count]' id="download" class="download bg-primary text-center" data-slide="home">
+    <button ng-click='getNodes()'>Testing get nodes</button>
+    <!-- CREATE SLIDE -->
+    <button ng-click='createSlide($event)' class='create-slide'>Make New Slide</button>
+    <!-- CHECKBOX -->
+    <to-checkbox ng-show='editStates.section'></to-checkbox>
+
+    <button ng-hide='editStates.section' class='edit-slide-btn'>edit</button>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                  <h2 class="section-heading">Discover what all the buzz is about!</h2>
+                  <p>Our app is available on any mobile device! Download now to get started!</p>
+                  <div class="badges">
+                      <a class="badge-link" href="#"><img src="img/google-play-badge.svg" alt=""></a>
+                      <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section node-form='node' show-hide current-state='states[count]' id="features" class="features" data-slide="home">
+    <!-- CREATE SLIDE -->
+    <button ng-click='createSlide($event)' class='create-slide'>Make New Slide</button>
+    <!-- CHECKBOX -->
+    <to-checkbox ng-show='editStates.section'></to-checkbox>
+    <button ng-hide='editStates.section' class='edit-slide-btn'>edit</button>
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12 text-center">
+                  <div class="section-heading">
+                      <h2>Unlimited Features, Unlimited Fun</h2>
+                      <p class="text-muted">Check out what you can do with this app theme!</p>
+                      <hr>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-4">
+                  <div class="device-container">
+                      <div class="device-mockup iphone6_plus portrait white">
+                          <div class="device">
+                              <div class="screen">
+                                  <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                                  <img src="img/demo-screen-1.jpg" class="img-responsive" alt=""> </div>
+                              <div class="button">
+                                  <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-8">
+                  <div class="container-fluid">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="feature-item">
+                                  <i class="icon-screen-smartphone text-primary"></i>
+                                  <h3>Device Mockups</h3>
+                                  <p class="text-muted">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="feature-item">
+                                  <i class="icon-camera text-primary"></i>
+                                  <h3>Flexible Use</h3>
+                                  <p class="text-muted">Put an image, video, animation, or anything else in the screen!</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="feature-item">
+                                  <i class="icon-present text-primary"></i>
+                                  <h3>Free to Use</h3>
+                                  <p class="text-muted">As always, this theme is free to download and use for any purpose!</p>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="feature-item">
+                                  <i class="icon-lock-open text-primary"></i>
+                                  <h3>Open Source</h3>
+                                  <p class="text-muted">Since this theme is MIT licensed, you can use it commercially!</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+  </section>
+
+  <section node-form='node' show-hide current-state='states[count]' class="cta" data-slide="home">
+      <div class="cta-content">
+          <div class="container">
+              <!-- CREATE SLIDE -->
+              <button ng-click='createSlide($event)' class='create-slide'>Make New Slide</button>
+              <!-- CHECKBOX -->
+              <to-checkbox ng-show='editStates.section'></to-checkbox>
+              <button ng-hide='editStates.section' class='edit-slide-btn'>edit</button>
+              <h2>Stop waiting.<br>Start building.</h2>
+              <a href="#contact" class="btn btn-outline btn-xl page-scroll">Let's Get Started!</a>
+          </div>
+      </div>
+      <div class="overlay"></div>
+  </section>
+
+  <section node-form='node' show-hide current-state='states[count]' id="contact" class="contact bg-primary" data-slide="home">
+    <!-- CHECKBOX -->
+    <to-checkbox ng-show='editStates.section'></to-checkbox>
+    <button ng-hide='editStates.section' class='edit-slide-btn'>edit</button>
+    <!-- CREATE SLIDE -->
+    <button ng-click='createSlide($event)' class='create-slide'>Make New Slide</button>
+      <div class="container">
+          <h2>We <i class="fa fa-heart"></i> new friends!</h2>
+          <ul class="list-inline list-social">
+              <li class="social-twitter">
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+              </li>
+              <li class="social-facebook">
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+              </li>
+              <li class="social-google-plus">
+                  <a href="#"><i class="fa fa-google-plus"></i></a>
+              </li>
+          </ul>
+      </div>
+  </section>
+
+  <footer>
+    <!-- CHECKBOX -->
+    <to-checkbox ng-show='editStates.section'></to-checkbox>
+    <button ng-hide='editStates.section' class='edit-slide-btn'>edit</button>
+      <div class="container">
+          <p>&copy; 2016 Start Bootstrap. All Rights Reserved.</p>
+          <ul class="list-inline">
+              <li>
+                  <a href="#">Privacy</a>
+              </li>
+              <li>
+                  <a href="#">Terms</a>
+              </li>
+              <li>
+                  <a href="#">FAQ</a>
+              </li>
+          </ul>
+      </div>
+  </footer>
+  <!-- </form> -->

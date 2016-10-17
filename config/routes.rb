@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   root to: 'static_pages#index'
   resources :static_pages, only: [:index]
+  resources :templates, only: [:index]
 end

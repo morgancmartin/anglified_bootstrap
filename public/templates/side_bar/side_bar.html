@@ -1,0 +1,11 @@
+<!-- onToggle must be called as scope.onToggle({stateObj: thing}), -->
+<!-- where thing is what you want the parent to see as 'stateObj'.  -->
+<edit-sections
+edit='vm.editStates.section'
+on-toggle='vm.toggle(stateObj)'>
+</edit-sections>
+
+<edit-textboxes
+edit='vm.editStates.textbox'
+on-toggle='vm.toggle(stateObj)'>
+</editTextboxes>
