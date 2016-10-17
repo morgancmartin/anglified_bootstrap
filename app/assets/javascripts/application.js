@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery.min
 //= require jquery_ujs
 //= require jquery-ui.min
 //= require angular
@@ -19,11 +19,11 @@
 //= require angular-devise
 //= require angular-animate.min
 //= require bootstrap.min
-//= require new-age
 //= require new-age.min
 //= require ui-bootstrap-tpls-2.2.0.min
 //= require xeditable
 //= require lodash.min
 //= require restangular
+//= require pluralize
 //= require jquery.fullPage
 //= require_tree .

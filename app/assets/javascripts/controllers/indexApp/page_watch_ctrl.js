@@ -45,20 +45,10 @@ function($scope, $, $rootScope, _, submitService){
     $scope.$broadcast('states.nextState', $scope.states[$scope.count] );
   };
 
-  // Saving the nodes.
-  $scope.nodeForm = {};
-  $scope.saveNodes = function () {
-    NodeService.saveNodeForm($scope.nodeForm);
-  };
-
   // Edit states of the different parts.
   $scope.editStates = {
     section: false,
     textbox: false
-  };
-
-  $scope.test = function () {
-    console.log('this is firing');
   };
 
   // Listener for toggle events in the sidebar.
