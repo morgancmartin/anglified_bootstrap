@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014203252) do
+ActiveRecord::Schema.define(version: 20161017185456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "htmls", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_htmls_on_user_id", using: :btree
+  end
+
+  create_table "javascripts", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "order"
+    t.integer  "html_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["html_id"], name: "index_javascripts_on_html_id", using: :btree
+  end
+
+  create_table "styles", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "order"
+    t.integer  "html_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["html_id"], name: "index_styles_on_html_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

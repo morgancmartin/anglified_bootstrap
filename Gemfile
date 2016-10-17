@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'figaro'
 gem 'httparty'
 gem 'awesome_print', require: 'ap'
+gem 'nokogiri'
 
 #angular
 gem 'angularjs-rails'
