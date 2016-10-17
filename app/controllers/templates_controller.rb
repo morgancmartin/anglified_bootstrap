@@ -6,7 +6,6 @@ class TemplatesController < ApplicationController
 
   def create
     @data = template_params
-    ap @data
     respond_to do |format|
       format.json { render json: @data.to_json, status: 200 }
     end

@@ -1,4 +1,4 @@
-app.directive('showHide', ['$', function ($) {
+app.directive('showHide', [function () {
 
   return {
     restrict: 'A',
@@ -10,7 +10,7 @@ app.directive('showHide', ['$', function ($) {
       scope.checkLessThanTwo = function (slide) {
         // Check if there are less than two slides left.
         // Then hide/show button.
-        var slides = $("[data-slide='" + slide + "']");
+        var slides = angular.element("[data-slide='" + slide + "']");
         if (slides.length < 2) {
           slides.find('button.create-slide').first().hide();
         } else {

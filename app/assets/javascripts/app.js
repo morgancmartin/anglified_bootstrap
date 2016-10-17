@@ -29,20 +29,50 @@ frontApp.config(
 
 // For edit page.
 var app = angular.module('editApp',
-  ['restangular', 'Devise', 'ngAnimate', 'ui.bootstrap', "xeditable"]
+
+  ['restangular', 'Devise', 'ui.bootstrap', "xeditable"]
   );
 
-app.factory('$', ['$window', function($window){
-  return $window.$;
-}]);
+// Error logging.
+app.run(function($rootScope){
+  $rootScope.$on("$stateChangeError", console.log.bind(console));
+});
 
 app.factory('_', ['$window', function($window){
   return $window._;
 }]);
 
-app.config(['RestangularProvider',
-function(RestangularProvider){
+app.factory('pluralize', ['$window', function($window){
+  return $window.pluralize;
+}]);
+
+app.config(['RestangularProvider', '$stateProvider', '$urlRouterProvider',
+function(RestangularProvider, $stateProvider, $urlRouterProvider){
   // Restangular
   RestangularProvider.setBaseUrl('/api/v1');
   RestangularProvider.setRequestSuffix('.json');
+
+  $urlRouterProvider.otherwise('/');
+
+  $stateProvider
+    .state('slides', {
+      url: '/',
+      views: {
+        '': {
+          templateUrl: 'templates/slides/index.html',
+          controller: 'PageWatchCtrl',
+          controllerAs: 'pageWatch'
+        }
+      }
+    })
+    .state('slides.blog', {
+      url: 'blog',
+      views: {
+        '@': {
+          templateUrl: 'templates/choose_resource/blog_preview.html',
+          controller: 'BlogPreviewCtrl',
+          controllerAs: 'blog'
+        }
+      }
+    });
 }]);

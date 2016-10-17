@@ -1,7 +1,5 @@
-<!DOCTYPE html >
 <%= content_for(:angular_app) do %>
   ng-app="editApp"
-  ng-controller="PageWatchCtrl as pageWatch"
 <% end %>
 
 <%= content_for(:templates_fonts) do %>
@@ -20,3 +18,4 @@
 <% end %>
 
 <%= @template.html_safe %>
+<div ui-view=''></div>
