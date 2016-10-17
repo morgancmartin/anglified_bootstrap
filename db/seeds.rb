@@ -5,3 +5,33 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Html.destroy_all
+p "HTML is destroyed along with all its dependencies"
+
+3.times do 
+  curr = User.first.htmls.create(
+    {
+      body: "<html>
+              <head>
+              </head>
+              <body>
+              </body>
+            </html>"
+    });
+  p "HTML id: #{curr.id} initialized"
+
+  2.times do
+    js = curr.javascripts.create({
+      body: "console.log('kekek')"
+    })
+
+    p "Javascript id: #{js.id} initialized"
+    
+    css = curr.styles.create({
+      body: "*  {border: 1px solid grey}"
+    })
+
+    p "Style id: #{css.id} initialized"
+  end
+end

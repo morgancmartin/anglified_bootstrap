@@ -13,5 +13,7 @@
  *= require_tree .
  *= require_self
  *= require jquery.fullPage
+ *= require bootstrap/css/bootstrap.min
+ *= require font-awesome/css/font-awesome.min
+ *= require simple-line-icons/css/simple-line-icons.css
  */
-

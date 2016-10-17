@@ -12,13 +12,18 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui.min
 //= require angular
 //= require angular-ui-router
 //= require angular-modal-service.min
 //= require angular-devise
+//= require angular-animate.min
+//= require bootstrap.min
+//= require new-age
+//= require new-age.min
+//= require ui-bootstrap-tpls-2.2.0.min
 //= require xeditable
 //= require lodash.min
 //= require restangular
 //= require jquery.fullPage
 //= require_tree .
-
