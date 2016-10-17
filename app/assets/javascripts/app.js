@@ -28,10 +28,7 @@ frontApp.config(
 
 
 // For edit page.
-var app = angular.module('editApp',
-
-  ['restangular', 'Devise', 'ui.bootstrap', "xeditable"]
-  );
+var app = angular.module('editApp', ['restangular', 'Devise', 'ui.bootstrap', "ui.router"]);
 
 // Error logging.
 app.run(function($rootScope){

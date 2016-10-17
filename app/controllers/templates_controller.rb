@@ -3,6 +3,7 @@ class TemplatesController < ApplicationController
   end
 
   def create
+    ap params
     @data = template_params
     respond_to do |format|
       format.json { render json: @data.to_json, status: 200 }
@@ -12,6 +13,6 @@ class TemplatesController < ApplicationController
   private
 
     def template_params
-      params.require(:template).permit(:home)
+      params.require(:template).permit(:head, :body => [:withEdits, :final])
     end
 end

@@ -57,6 +57,11 @@ function($scope, $rootScope, _, submitService){
   });
 
   $scope.submitPage = function(){
-    submitService.submitPage($scope.states);
+    submitService.submitPage($scope.states).then(function(response){
+      console.log(response);
+      return response;
+    }).catch(function(reason){
+      console.log(reason);
+    });
   };
 }]);
