@@ -29,18 +29,14 @@ frontApp.config(
 
 // For edit page.
 var app = angular.module('editApp',
-  ['restangular', 'Devise', 'ngAnimate', 'ui.bootstrap', "xeditable", 'ui.router']
+
+  ['restangular', 'Devise', 'ui.bootstrap', "xeditable"]
   );
 
 // Error logging.
 app.run(function($rootScope){
   $rootScope.$on("$stateChangeError", console.log.bind(console));
 });
-
-// Injecting global modules.
-app.factory('$', ['$window', function($window){
-  return $window.$;
-}]);
 
 app.factory('_', ['$window', function($window){
   return $window._;

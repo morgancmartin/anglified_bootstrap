@@ -38,12 +38,28 @@ app.factory('submitService', ["_", "Restangular", function(_, Restangular) {
 
   var _newBody = function($wrapper){
     var $body = angular.element('body')
-                .clone()
-                .remove('section')
-                .remove('header');
+                .clone();
+    $body = _removeSectionsTools($body);
+                // .remove('section')
+                // .remove('side-bar')
+                // .remove('header')
+                // .remove('edit-sections');
     $body = _removeEditor($body);
     $body.find('nav').after($wrapper);
     return $body.html();
+  };
+
+  var _removeSectionsTools = function($obj){
+    $obj.find("section").remove();
+    $obj.find("header").remove();
+    $obj.find("side-bar").remove();
+    $obj.find("edit-sections").remove();
+    $obj.contents().each(function() {
+      if(this.nodeType === Node.COMMENT_NODE) {
+          angular.element(this).remove();
+      }
+    });
+    return $obj;
   };
 
   var _addAttrs = function($ele){
