@@ -4,14 +4,9 @@ Rails.application.routes.draw do
   root to: 'static_pages#index'
   resources :static_pages, only: [:index]
   get 'templates' => 'templates#index'
-  get 'testings' => 'testings#index'
   scope :api do
     scope :v1 do
       resources :templates, only: [:create]
-
-      # delete this when finished
-      resources :testings
-      resources :users
     end
   end
 

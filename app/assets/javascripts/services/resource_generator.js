@@ -1,10 +1,7 @@
-// generatorTest.factory('OtherFactory', ['Restangular', function(Restangular) {
-//   return {
-//     test:
-//   };
-// }]);
+// e.g. $injector.instantiate(ResourceGenerator.generate('users'))
+// Inject $injector in a controller and run that line to instantiate a generated service.
 
-generatorTest.factory('ResourceGenerator',
+app.factory('ResourceGenerator',
 ['Restangular', '_', 'pluralize', function(Restangular, _, pluralize) {
 
   var srv = {};
