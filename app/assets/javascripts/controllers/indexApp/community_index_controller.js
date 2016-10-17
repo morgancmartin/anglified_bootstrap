@@ -52,10 +52,10 @@ frontApp.controller('CommunityIndexCtrl',
 
   $scope.selectTemplate = function(template_id) {
     if ($scope.selected) {
-      $('.template-cards').removeClass('bg-primary').removeClass('active');
+      $('.template-cards').removeClass('bg-info').removeClass('active');
       $scope.selected = undefined;
     } else {
-      $('#template'+template_id).toggleClass('bg-primary active');
+      $('#template'+template_id).toggleClass('bg-info active');
       $scope.selected = template_id;
     }
 
