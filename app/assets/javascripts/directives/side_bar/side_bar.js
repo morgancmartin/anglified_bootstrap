@@ -20,6 +20,6 @@ app.directive('sideBar', function () {
     controllerAs: 'vm',
     restrict: 'E',
     scope: {},
-    templateUrl: 'templates/side_bar/side_bar.html'
+    templateUrl: 'side_bar/side_bar.html'
   };
 });

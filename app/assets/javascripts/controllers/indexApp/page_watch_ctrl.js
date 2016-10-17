@@ -1,6 +1,6 @@
 app.controller('PageWatchCtrl',
-['$scope', '$', 'NodeService', '$rootScope', "_", 'submitService',
-function($scope, $, NodeService, $rootScope, _, submitService){
+['$scope', '$', '$rootScope', "_", 'submitService',
+function($scope, $, $rootScope, _, submitService){
   var elements = $('body *');
 
   for (var i =1; i < ( 1 + elements.length ); i++){

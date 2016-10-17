@@ -7,15 +7,6 @@ frontApp.factory('$', ['$window', function($window){
   return $window.$;
 }]);
 
-// For edit page.
-var app = angular.module('editApp',
-  ['restangular', 'Devise', 'ngAnimate', 'ui.bootstrap', "xeditable"]
-  );
-
-app.factory('_', ['$window', function($window){
-  return $window._;
-}]);
-
 frontApp.config(['RestangularProvider',
 function(RestangularProvider){
   // Restangular
@@ -33,4 +24,25 @@ frontApp.config(
       .defaults
       .headers
       .common['X-CSRF-Token'] = token;
+}]);
+
+
+// For edit page.
+var app = angular.module('editApp',
+  ['restangular', 'Devise', 'ngAnimate', 'ui.bootstrap', "xeditable"]
+  );
+
+app.factory('$', ['$window', function($window){
+  return $window.$;
+}]);
+
+app.factory('_', ['$window', function($window){
+  return $window._;
+}]);
+
+app.config(['RestangularProvider',
+function(RestangularProvider){
+  // Restangular
+  RestangularProvider.setBaseUrl('/api/v1');
+  RestangularProvider.setRequestSuffix('.json');
 }]);

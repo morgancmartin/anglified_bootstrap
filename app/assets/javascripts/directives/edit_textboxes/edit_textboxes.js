@@ -5,7 +5,7 @@ app.directive('editTextboxes', function () {
       edit: '<',
       onToggle: '&'
     },
-    templateUrl: 'templates/edit_textboxes/edit_textboxes.html',
+    templateUrl: 'edit_textboxes/edit_textboxes.html',
     link: function (scope) {
       scope.toggleTextboxState = function () {
         var stateObj = {

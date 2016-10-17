@@ -18,6 +18,9 @@
 //= require angular-modal-service.min
 //= require angular-devise
 //= require angular-animate.min
+//= require bootstrap.min
+//= require new-age
+//= require new-age.min
 //= require ui-bootstrap-tpls-2.2.0.min
 //= require xeditable
 //= require lodash.min
