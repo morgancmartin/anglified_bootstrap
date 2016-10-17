@@ -40,10 +40,6 @@ app.factory('submitService', ["_", "Restangular", function(_, Restangular) {
     var $body = angular.element('body')
                 .clone();
     $body = _removeSectionsTools($body);
-                // .remove('section')
-                // .remove('side-bar')
-                // .remove('header')
-                // .remove('edit-sections');
     $body = _removeEditor($body);
     $body.find('nav').after($wrapper);
     return $body.html();
