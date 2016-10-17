@@ -7,6 +7,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <!-- For Community Page -->
     <!-- font awesome -->
     <link
     href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
@@ -23,24 +24,11 @@
     <!--md bootstrap -->
     <link <%= content_for(:mdb_community) %>>
 
-    <!-- from slideTest -->
-    <!-- Bootstrap Core CSS -->
-    <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-
+    <!-- For Templates Edit Page -->
     <!-- Custom Fonts -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet"> -->
-
-    <!-- Plugin CSS -->
-    <!-- <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css"> -->
-
-    <!-- Theme CSS -->
-    <!-- <link href="css/new-age.min.css" rel="stylesheet">
-    <link href="css/anglify.css" rel="stylesheet">
-    <link href="css/xeditable.css" rel="stylesheet"> -->
+    <link <%= content_for(:lato_font) %>>
+    <link <%= content_for(:catamaran_font) %>>
+    <link <%= content_for(:muli_font) %>>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,8 +39,6 @@
 
     <!-- Plugin JavaScript -->
     <script <%= content_for(:plugin_js) %>></script>
-
-    <%= yield :templates_fonts %>
 
 
   </head>
