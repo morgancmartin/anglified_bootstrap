@@ -7,6 +7,8 @@ class TemplatesController < ApplicationController
   def create
     ap params
     @data = template_params
+    p @data.keys
+    buildHTMLFile(@data)
     respond_to do |format|
       format.json { render json: @data.to_json, status: 200 }
     end
