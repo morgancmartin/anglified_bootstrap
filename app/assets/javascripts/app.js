@@ -29,7 +29,7 @@ frontApp.config(
 
 // For edit page.
 var app = angular.module('editApp',
-  ['restangular', 'Devise', 'ngAnimate', 'ui.bootstrap', "xeditable"]
+  ['restangular', 'Devise', 'ngAnimate', 'ui.bootstrap', "xeditable", "ui.tinymce"]
   );
 
 app.factory('$', ['$window', function($window){
