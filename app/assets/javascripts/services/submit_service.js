@@ -51,7 +51,8 @@ app.factory('submitService', ["_", "Restangular", function(_, Restangular) {
     $nav = $body.find('nav');
     $nav.after($wrapper);
     // $wrapper.insertAfter($body.find('nav'));
-    return $body.prop('outerHTML');
+    // return $body.prop('outerHTML');
+    return $body.html();
   };
 
   var _removeSectionsTools = function($obj){
