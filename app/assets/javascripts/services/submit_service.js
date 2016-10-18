@@ -10,26 +10,22 @@ app.factory('submitService', ["_", "Restangular", function(_, Restangular) {
   };
 
   var _slideSplice = function($obj, collection){
+    var header = _changeHeadScripts(angular.element('head'));
     var output = {
-      head: angular.element('head').prop('outerHTML'),
+      // head: angular.element('head').prop('outerHTML'),
+      head: header,
       body: {
-        withEdits: $obj.prop('outerHTML')//,
-        // final: {
-        //   nav:$obj.find('nav').prop('outerHTML'),
-        //   footer: $obj.find('footer').prop('outerHTML')
-        // }
+        withEdits: $obj.prop('outerHTML')
       }
     };
 
     var $bodyWrapper = angular.element("<div full-page options=''>");
 
     _.each(collection, function(slide){
-      // console.log(slide);
       var $sectionWrapper = angular.element("<div class='section'>");
       var $slides = $obj.find("[data-slide='" + slide +"']").clone();
 
       $slides.each(function(index, element){
-        // console.log($sectionWrapper);
         var $element = _cleanAttrs(element);
         $element = _addAttrs($element);
         $sectionWrapper.append($element);
@@ -38,7 +34,6 @@ app.factory('submitService', ["_", "Restangular", function(_, Restangular) {
     });
     var newBody = _newBody($bodyWrapper);
     output.body.final = newBody;
-    // output.body.final.body = $bodyWrapper.prop('outerHTML');
     console.log(newBody);
     return output;
   };
@@ -50,9 +45,21 @@ app.factory('submitService', ["_", "Restangular", function(_, Restangular) {
     $body = _removeEditor($body);
     $nav = $body.find('nav');
     $nav.after($wrapper);
-    // $wrapper.insertAfter($body.find('nav'));
-    // return $body.prop('outerHTML');
+    $body = _addBodyScripts($body);
     return $body.html();
+  };
+
+  var _addBodyScripts = function($obj){
+    $obj.append('<script src="vendor/jquery/jquery.min.js">');
+    $obj.append('<script src="vendor/bootstrap/js/bootstrap.min.js">');
+    $obj.append('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js">');
+    $obj.append('<script src="js/new-age.min.js">');
+    $obj.append('<script src="angular_files/app.js">');
+  };
+
+  var _addHeadScripts = function() {
+    var $head = angular.element('<head>');
+
   };
 
   var _removeSectionsTools = function($obj){
