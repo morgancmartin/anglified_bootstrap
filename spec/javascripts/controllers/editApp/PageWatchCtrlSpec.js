@@ -50,4 +50,22 @@ describe('PageWatchCtrl', function() {
       expect($scope.count).toEqual(1);
     });
   });
+
+  describe('sidebar.toggled', function () {
+    it('toggles the show/hide states of different parts of the page', function() {
+      var editStates = {
+        section: true
+      };
+      $rootScope.$emit('sidebar.toggled', editStates);
+      expect($scope.editStates.section).toBe(true);
+    });
+  });
+
+  describe('checkboxValues', function () {
+    it("sets true for a checkbox when that checkbox is selected", function () {
+      var checkboxValue = 1;
+      $rootScope.$emit('checkbox.value', checkboxValue);
+      expect($scope.checkboxValues[checkboxValue]).toBe(true);
+    });
+  });
 });
