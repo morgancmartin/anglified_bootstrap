@@ -25,6 +25,5 @@ class TemplatesController < ApplicationController
       t.add_attributes
       @template = t.doc.css('body').first.to_s
       @head = t.doc.css('head').children.to_s
-      puts @head
     end
 end

@@ -38,6 +38,8 @@ class TemplateExtender
       elsif type == 'body'
         add_ng_controller_to_body(node)
         add_sidebar_to_body(node)
+      elsif type == 'script'
+        node.remove
       end
     end
   end
