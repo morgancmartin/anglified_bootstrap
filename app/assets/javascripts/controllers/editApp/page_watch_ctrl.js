@@ -12,14 +12,6 @@ function($scope, $rootScope, _, submitService){
 
   $scope.states = ['home'];
   $scope.count = 0;
-  $scope.nextState = function (slideTo) {
-    if(slideTo){
-      $scope.count = slideTo;
-    } else {
-      $scope.count = ($scope.count + 1) % $scope.states.length;
-    }
-    $scope.$broadcast('states.nextState', $scope.states, $scope.count);
-  };
 
   // Clicking 'make a new slide' on a section/header/footer
   // should take it out of the main page and give it its own slide.
@@ -60,7 +52,6 @@ function($scope, $rootScope, _, submitService){
   // Toggle true/false
   $scope.checkboxValues = {};
   $rootScope.$on('checkbox.value', function (ev, checkboxValue) {
-    console.log('$scope.checkboxValues');
     if ($scope.checkboxValues[checkboxValue]) {
       $scope.checkboxValues[checkboxValue] = !$scope.checkboxValues[checkboxValue];
     } else {
@@ -68,6 +59,7 @@ function($scope, $rootScope, _, submitService){
     }
   });
 
+  // Storing data to be sent to the Rails API.
   $scope.submitPage = function(){
     submitService.submitPage($scope.states).then(function(response){
       console.log(response);
