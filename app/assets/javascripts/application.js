@@ -28,6 +28,7 @@
 //= require tinymce
 //= require angular-tinymce
 
+//= require ui-bootstrap-2.2.0.min
 //= require ui-bootstrap-tpls-2.2.0.min
 //= require xeditable
 //= require lodash.min
