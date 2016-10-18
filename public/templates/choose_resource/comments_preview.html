@@ -6,17 +6,12 @@
     <p>created at something something</p>
     <p>Lorem and stuff </p><br>
   </label><br>
+  <comment></comment>
 
-  <div ng-repeat='i in [1,2,3,4,5]'>
+  <div ng-repeat='i in comments.comments'>
     <h3>Comment number {{i}}</h3>
     <p>created at something something by whoever</p>
     <p>I {{comments.random()}} this blog!</p><br>
-
-    <div ng-repeat='i in [1,2,3,4,5]'>
-      <h3>Reply number {{i}}</h3>
-      <p>created at something something by whoever</p>
-      <p>I {{comments.random()}} this blog!</p><br>
-    </div>
   </div>
 
   <button ng-click='comments.addResource()'>Add a blog</button>
