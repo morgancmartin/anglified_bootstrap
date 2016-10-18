@@ -40,7 +40,7 @@ frontApp.controller('CommunityIndexCtrl',
 
   var textAnimate = function() {
      return $('.starting').hide().delay(700).show(1000).delay(1000);
-  }
+  };
 
   $scope.getStarted = function() {
     $.fn.fullpage.moveSectionDown();
@@ -64,7 +64,7 @@ frontApp.controller('CommunityIndexCtrl',
   $scope.go = function() {
     alert("it'll buff out");
     // $state.go('template.show({id:$scope.selected})')
-  }
+  };
 
   // same as $(document).ready. FullPageJSes the page.
   angular.element(document).ready(function () {
