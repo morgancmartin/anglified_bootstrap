@@ -1,4 +1,4 @@
-app.controller('TinyMceController', 
+app.controller('TinyMceCtrl', 
   ['$scope', function($scope) {
 
   $scope.previousId;

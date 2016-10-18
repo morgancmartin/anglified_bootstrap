@@ -6,6 +6,22 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+puts "Destroying users"
+
+User.destroy_all
+
+puts "Done!"
+
+puts "Creating users"
+10.times do |n|
+  User.create!({
+    email: Faker::Internet.email,
+    password: 'dsadsdasdasasdsadadada'
+    })
+end
+
+puts "Done!"
+
 Html.destroy_all
 User.destroy_all
 p "HTML is destroyed along with all its dependencies"

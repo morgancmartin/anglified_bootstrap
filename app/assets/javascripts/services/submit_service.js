@@ -6,25 +6,30 @@ app.factory('submitService', ["_", "Restangular", function(_, Restangular) {
     $body = _removeEditor($body);
     output = _slideSplice($body, slideStack);
     console.log(output);
-    return Promise.resolve(output);
-    // return Restangular.all("templates").post(output)
+    return Restangular.all("templates").post(output);
   };
 
   var _slideSplice = function($obj, collection){
     var output = {
-      head: angular.element('head').html(),
+      head: angular.element('head').prop('outerHTML'),
       body: {
-        withEdits: angular.element('body').clone().html()
+        withEdits: $obj.prop('outerHTML')//,
+        // final: {
+        //   nav:$obj.find('nav').prop('outerHTML'),
+        //   footer: $obj.find('footer').prop('outerHTML')
+        // }
       }
     };
 
     var $bodyWrapper = angular.element("<div full-page options=''>");
 
     _.each(collection, function(slide){
+      // console.log(slide);
       var $sectionWrapper = angular.element("<div class='section'>");
-      var $slides = $obj.children("[data-slide='" + slide +"']");
+      var $slides = $obj.find("[data-slide='" + slide +"']").clone();
 
       $slides.each(function(index, element){
+        // console.log($sectionWrapper);
         var $element = _cleanAttrs(element);
         $element = _addAttrs($element);
         $sectionWrapper.append($element);
@@ -33,17 +38,33 @@ app.factory('submitService', ["_", "Restangular", function(_, Restangular) {
     });
     var newBody = _newBody($bodyWrapper);
     output.body.final = newBody;
+    // output.body.final.body = $bodyWrapper.prop('outerHTML');
+    console.log(newBody);
     return output;
   };
 
   var _newBody = function($wrapper){
     var $body = angular.element('body')
-                .clone()
-                .remove('section')
-                .remove('header');
+                .clone();
+    $body = _removeSectionsTools($body);
     $body = _removeEditor($body);
-    $body.find('nav').after($wrapper);
-    return $body.html();
+    $nav = $body.find('nav');
+    $nav.after($wrapper);
+    // $wrapper.insertAfter($body.find('nav'));
+    return $body.prop('outerHTML');
+  };
+
+  var _removeSectionsTools = function($obj){
+    $obj.find("section").remove();
+    $obj.find("header").remove();
+    $obj.find("side-bar").remove();
+    $obj.find("edit-sections").remove();
+    $obj.contents().each(function() {
+      if(this.nodeType === Node.COMMENT_NODE) {
+          angular.element(this).remove();
+      }
+    });
+    return $obj;
   };
 
   var _addAttrs = function($ele){
