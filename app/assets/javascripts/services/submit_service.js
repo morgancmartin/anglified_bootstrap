@@ -10,7 +10,7 @@ app.factory('submitService', ["_", "Restangular", function(_, Restangular) {
   };
 
   var _slideSplice = function($obj, collection){
-    var header = _changeHeadScripts(angular.element('head'));
+    var header = _addHeadScripts();
     var output = {
       // head: angular.element('head').prop('outerHTML'),
       head: header,
@@ -55,11 +55,17 @@ app.factory('submitService', ["_", "Restangular", function(_, Restangular) {
     $obj.append('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js">');
     $obj.append('<script src="js/new-age.min.js">');
     $obj.append('<script src="angular_files/app.js">');
+    return $obj;
   };
 
   var _addHeadScripts = function() {
     var $head = angular.element('<head>');
-
+    $head.append('<script src="angular_files/angular.min.js">');
+    $head.append('<script src="angular_files/angular-ui-router.min.js">');
+    $head.append('<script src="angular_files/lodash.min.js">');
+    $head.append('<script src="angular_files/restangular.js">');
+    $head.append('<script src="angular_files/jquery.fullPage.js">');
+    return $head.html();
   };
 
   var _removeSectionsTools = function($obj){
