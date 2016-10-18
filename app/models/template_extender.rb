@@ -36,9 +36,14 @@ class TemplateExtender
         node['class'] = 'textable'
         change_img_src(node) if type == 'img'
       elsif type == 'body'
+        add_ng_controller_to_body(node)
         add_sidebar_to_body(node)
       end
     end
+  end
+
+  def add_ng_controller_to_body(node)
+    node['ng-controller'] = 'PageWatchCtrl'
   end
 
   def change_img_src(node)
