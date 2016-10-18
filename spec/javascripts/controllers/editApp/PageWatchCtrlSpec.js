@@ -22,27 +22,30 @@ describe('PageWatchCtrl', function() {
   }));
 
   describe('createSlide', function () {
-    it('adds a state', function () {
+    beforeEach(function() {
       $scope.createSlide($event);
+    });
+
+    it('adds a state', function () {
       expect($scope.states.length).toEqual(2);
     });
 
     it('takes you to the recently created slide', function () {
-      $scope.createSlide($event);
       expect($scope.count).toEqual(1);
     });
   });
 
   describe('nextState', function () {
-    it("brings you to the start when you're at the last slide", function () {
+    beforeEach(function() {
       $scope.createSlide($event);
       $scope.nextState();
+    });
+
+    it("brings you to the start when you're at the last slide", function () {
       expect($scope.count).toEqual(0);
     });
 
     it("brings you to the next slide when you're not at the end", function () {
-      $scope.createSlide($event);
-      $scope.nextState();
       $scope.nextState();
       expect($scope.count).toEqual(1);
     });
