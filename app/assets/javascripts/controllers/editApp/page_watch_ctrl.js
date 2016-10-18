@@ -79,29 +79,15 @@ function($scope, $rootScope, _, submitService){
     });
   };
 
-
-
-  //testing
-  // $($('h1')[0]).addClass('textable').attr('id', '27').attr('textable', '');
-  /** 
+  /*
   ----------------------------------------------------
   Tiny MCE
   ----------------------------------------------------
-  **/
+  */
 
   $scope.previousId;
-
-  //sets a listener to 'textable' class tags 
-  // builds tinyMCE editor and hides selected tag
-
-  $scope.$watch('editStates.tinymce', function(newVal) {
-    if (newVal) {
-    var tinyMCEListener = angular.element('.textable').on('click', function(event) {
-      /*edge cases are:
-        clicking a box, exiting, and reclicking it should still target the same div.
-        clicking another box should successfully target the other box.
-      */
-      var id;
+  $scope.mce = function (event) {
+    var id;
       if($scope.previousId) {
         var nested_targ = event.target;
         while (!nested_targ.class && (nested_targ.class !== "textable" )) {
@@ -121,7 +107,7 @@ function($scope, $rootScope, _, submitService){
         plugins: 'link image code wordcount',
         toolbar: 'mybutton | myimage | close | undo redo | bold italic | alignleft aligncenter alignright | code',
         theme: "inlite",
-         inline: true,
+        inline: true,
         menubar: true,
         setup: function (editor) {
           editor.addButton('mybutton', {
@@ -150,13 +136,18 @@ function($scope, $rootScope, _, submitService){
           'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.min.css'
         ]
       });
-    })
-    } else {
-      $scope.$on('$destroy', function() {
-        tinyMCEListener();
-      });
-    }
+  };
 
+  //sets a listener to 'textable' class tags 
+  // builds tinyMCE editor and hides selected tag
+  $scope.$watch('editStates.tinymce', function(newVal) {    
+    if (newVal) {
+      angular.element('.textable').on('click', $scope.mce);
+    } else {
+      tinymce.remove('.textable');
+      angular.element('.textable').off('click', $scope.mce);
+      console.log("tinyMceListeners and Editors are gone");
+    }
   });
 
 
