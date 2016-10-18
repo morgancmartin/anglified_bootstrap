@@ -9,6 +9,7 @@ app.factory('ResourceService', ['_', function (_) {
 
   srv.addResource = function (resource) {
     _data.cached.push(resource);
+    console.log(_data);
     return Promise.resolve(_data);
   };
 
