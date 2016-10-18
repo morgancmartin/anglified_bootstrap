@@ -1,3 +1,0 @@
-app.controller('BlogPreviewCtrl', function () {
-  
-});
