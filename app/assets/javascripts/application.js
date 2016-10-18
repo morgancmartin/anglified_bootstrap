@@ -18,6 +18,10 @@
 //= require angular-modal-service.min
 //= require angular-devise
 //= require angular-animate.min
+//= require angular-mocks
+//= require ngAnimateMock
+//= require ngMock
+//= require ngMockE2E
 //= require bootstrap.min
 //= require new-age.min
 
