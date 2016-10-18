@@ -1,7 +1,7 @@
 class TemplatesController < ApplicationController
   def index
     # set_nokogirized_template_by_url(params[:template_name])
-    set_nokogirized_template_by_name('new-age')
+    # set_nokogirized_template_by_name('new-age')
   end
 
   def create

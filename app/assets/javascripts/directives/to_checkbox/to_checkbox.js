@@ -16,6 +16,11 @@ app.directive('toCheckbox', [ function() {
       scope.$on('states.getDataSlide', function (ev) {
         scope.getDataSlide();
       });
+
+      // Tell PageWatchCtrl to toggle the scope's value.
+      scope.broadcastValue = function () {
+        scope.$emit('checkbox.value', scope.checkboxValue);
+      };
     }
   };
 }]);
