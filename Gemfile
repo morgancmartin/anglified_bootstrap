@@ -5,6 +5,7 @@ gem 'figaro'
 gem 'httparty'
 gem 'awesome_print', require: 'ap'
 gem 'nokogiri'
+gem 'tinymce-rails'
 
 #angular
 gem 'angularjs-rails'
