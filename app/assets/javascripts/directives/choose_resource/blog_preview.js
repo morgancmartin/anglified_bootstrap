@@ -1,4 +1,5 @@
-app.controller('ModalInstanceCtrl',
+// Will add RESTful functionality in the future.
+app.controller('BlogModalCtrl',
 ['$uibModalInstance', function ($uibModalInstance) {
   var vm = this;
 
@@ -23,9 +24,9 @@ function (ResourceService, $uibModal, $element) {
   vm.open = function (size) {
     var parentElem = angular.element($element);
     var modalInstance = $uibModal.open({
-      animation: vm.animationsEnabled,
+      animation: true,
       templateUrl: 'templates/choose_resource/blog_preview_modal.html',
-      controller: 'ModalInstanceCtrl',
+      controller: 'BlogModalCtrl',
       controllerAs: 'vm',
       size: size,
       appendTo: parentElem
