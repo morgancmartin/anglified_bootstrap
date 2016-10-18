@@ -86,7 +86,7 @@ function($scope, $rootScope, _, submitService){
           if (nested_targ.id) {
             id = nested_targ.id;
             break;
-          } 
+          }
           nested_targ = angular.element(nested_targ).parent()[0];
         }
       } else {
@@ -130,7 +130,7 @@ function($scope, $rootScope, _, submitService){
       });
   };
 
-  //sets a listener to 'textable' class tags 
+  //sets a listener to 'textable' class tags
   // builds tinyMCE editor and hides selected tag
   $scope.$watch('editStates.tinymce', function(newVal) {    
     if (newVal) {
