@@ -20,6 +20,11 @@
 //= require angular-devise
 //= require angular-animate.min
 //= require bootstrap.min
+//= require new-age.min
+
+//= require tinymce
+//= require angular-tinymce
+
 //= require ui-bootstrap-tpls-2.2.0.min
 //= require lodash.min
 //= require restangular
