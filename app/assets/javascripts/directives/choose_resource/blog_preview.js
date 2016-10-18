@@ -27,7 +27,7 @@ function (ResourceService, $uibModal, $element) {
       animation: true,
       templateUrl: 'templates/choose_resource/blog_preview_modal.html',
       controller: 'BlogModalCtrl',
-      controllerAs: 'vm',
+      controllerAs: 'modal',
       size: size,
       appendTo: parentElem
     });
@@ -39,9 +39,9 @@ function (ResourceService, $uibModal, $element) {
 app.directive('blogPreview', function() {
   return {
     controller: 'BlogPreviewCtrl',
-    controllerAs: 'vm',
+    controllerAs: 'blog',
     bindToController: true,
     restrict: 'E',
-    template: "<i class='fa fa-book click' ng-click='vm.open()'></i>"
+    template: "<i class='fa fa-book click' ng-click='blog.open()'></i>"
   };
 });

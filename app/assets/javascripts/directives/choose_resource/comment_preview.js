@@ -29,7 +29,7 @@ function (ResourceService, $element, $uibModal) {
       animation: true,
       templateUrl: 'templates/choose_resource/comment_preview_modal.html',
       controller: 'CommentModalCtrl',
-      controllerAs: 'vm',
+      controllerAs: 'modal',
       size: size,
       appendTo: parentElem,
       resolve: {
@@ -44,9 +44,9 @@ function (ResourceService, $element, $uibModal) {
 app.directive('commentPreview', function () {
   return {
     controller: 'CommentPreviewCtrl',
-    controllerAs: 'vm',
+    controllerAs: 'comment',
     bindToController: true,
     restrict: 'E',
-    template: "<i class='fa fa-comments-o click' ng-click='vm.open()'></i>"
+    template: "<i class='fa fa-comments-o click' ng-click='comment.open()'></i>"
   };
 });

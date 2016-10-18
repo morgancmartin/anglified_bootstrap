@@ -18,7 +18,7 @@ app.controller('SideBarCtrl', ['$rootScope', function ($rootScope) {
 app.directive('sideBar', function () {
   return {
     controller: 'SideBarCtrl',
-    controllerAs: 'vm',
+    controllerAs: 'side',
     restrict: 'E',
     scope: {},
     templateUrl: 'templates/side_bar/side_bar.html'
