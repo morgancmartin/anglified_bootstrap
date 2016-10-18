@@ -1,7 +1,7 @@
 class TemplatesController < ApplicationController
   def index
     # set_nokogirized_template_by_url(params[:template_name])
-    # set_nokogirized_template_by_name('new-age')
+    set_nokogirized_template_by_name('new-age')
   end
 
   def create
@@ -23,6 +23,8 @@ class TemplatesController < ApplicationController
     def set_nokogirized_template_by_name(name)
       t = TemplateExtender.new(name)
       t.add_attributes
-      @template = t.doc.to_s
+      @template = t.doc.css('body').first.to_s
+      @head = t.doc.css('head').children.to_s
+      puts @head
     end
 end
