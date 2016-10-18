@@ -28,10 +28,7 @@ frontApp.config(
 
 
 // For edit page.
-var app = angular.module('editApp',
-
-  ['restangular', 'Devise', 'ui.bootstrap', "xeditable"]
-  );
+var app = angular.module('editApp', ['restangular', 'Devise', 'ui.bootstrap', "ui.router"]);
 
 // Error logging.
 app.run(function($rootScope){
@@ -72,6 +69,16 @@ function(RestangularProvider, $stateProvider, $urlRouterProvider){
           templateUrl: 'templates/choose_resource/blog_preview.html',
           controller: 'BlogPreviewCtrl',
           controllerAs: 'blog'
+        }
+      }
+    })
+    .state('slides.comments', {
+      url: 'comments',
+      views: {
+        '@': {
+          templateUrl: 'templates/choose_resource/comments_preview.html',
+          controller: 'CommentsPreviewCtrl',
+          controllerAs: 'comments'
         }
       }
     });
