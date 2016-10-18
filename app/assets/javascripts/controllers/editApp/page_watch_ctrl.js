@@ -56,6 +56,18 @@ function($scope, $rootScope, _, submitService){
     angular.copy(editStates, $scope.editStates);
   });
 
+  // Checkbox values for sections.
+  // Toggle true/false
+  $scope.checkboxValues = {};
+  $rootScope.$on('checkbox.value', function (ev, checkboxValue) {
+    console.log('$scope.checkboxValues');
+    if ($scope.checkboxValues[checkboxValue]) {
+      $scope.checkboxValues[checkboxValue] = !$scope.checkboxValues[checkboxValue];
+    } else {
+      $scope.checkboxValues[checkboxValue] = true;
+    }
+  });
+
   $scope.submitPage = function(){
     submitService.submitPage($scope.states).then(function(response){
       console.log(response);
