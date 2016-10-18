@@ -24,6 +24,6 @@ class TemplatesController < ApplicationController
       t = TemplateExtender.new(name)
       t.add_attributes
       @template = t.doc.css('body').first.to_s
-      @head = t.doc.css('head').children.to_s
+      @template_name = 'new-age'
     end
 end

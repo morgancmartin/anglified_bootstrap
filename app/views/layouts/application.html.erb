@@ -35,8 +35,9 @@
     <!-- Plugin JavaScript -->
     <script <%= content_for(:plugin_js) %>></script>
 
-    <!-- <link rel="stylesheet" href="/new-age/css/new-age.min.css" type="text/css"> -->
-    <%= content_for(:head_info) %>
+    <!-- <link rel="stylesheet" -->
+    <!-- href="/<%= content_for(:template_css)%>/css/<%= content_for(:template_css)%>.min.css" type="text/css"> -->
+    <link rel="stylesheet" href="/new-age/css/new-age.min.css" type="text/css">
   </head>
 
   <body <%= content_for(:body_id) %>>
