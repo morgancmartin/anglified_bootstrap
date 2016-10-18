@@ -1,4 +1,4 @@
-<div>
+<div class='comment-modal'>
   <h1>Want comments in your app?</h1>
 
   <label>
@@ -8,11 +8,11 @@
   </label><br>
   <comment></comment>
 
-  <div ng-repeat='i in comments.comments'>
+  <div ng-repeat='i in vm.comments'>
     <h3>Comment number {{i}}</h3>
     <p>created at something something by whoever</p>
     <p>I love this blog!</p><br>
   </div>
 
-  <button ng-click='comments.addResource()'>Add comments</button>
+  <button ng-click='vm.ok()'>Add comments</button>
 </div>
