@@ -40,6 +40,11 @@ i.click {
   cursor: pointer;
 }
 
+.modal-btn {
+  position: fixed;
+  right: 3em;
+}
+
 @keyframes show {
   0% {
     opacity:0;

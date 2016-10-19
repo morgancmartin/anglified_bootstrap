@@ -1,2 +1,2 @@
 // require('./angular-mocks');
-module.exports = 'ngMock';
+// module.exports = 'ngMock';
