@@ -5,7 +5,7 @@ app.factory('submitService', ["_", "Restangular", "ResourceService", function(_,
     $body = _removeEditor($body);
     output = _slideSplice($body, slideStack);
     _addResource(output);
-    console.log(output);
+    // console.log(output);
     return Restangular.all("templates").post(output);
   };
 
@@ -13,6 +13,7 @@ app.factory('submitService', ["_", "Restangular", "ResourceService", function(_,
     ResourceService.all()
       .then(function(response){
         if (!(_.isEmpty(response.cached))){
+          console.log(response.cached);
           obj.resource = response;
         }
         return response;

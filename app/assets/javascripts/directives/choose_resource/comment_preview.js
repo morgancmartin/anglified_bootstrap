@@ -42,6 +42,8 @@ function (ResourceService, $element, $uibModal, ResourceGenerator, $injector) {
         data: vm.comments.all
       }
     });
+
+    modalInstance.result.then(vm.addResource);
   };
 }]);
 
