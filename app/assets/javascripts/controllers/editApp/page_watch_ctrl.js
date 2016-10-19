@@ -1,6 +1,6 @@
 app.controller('PageWatchCtrl',
-['$scope', '$rootScope', "_", 'submitService', 'tinyMCEService',
-function($scope, $rootScope, _, submitService, tinyMCEService){
+['$scope', '$rootScope', "_", 'submitService', 'tinyMCEService', 'userEditService',
+function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
 
   $scope.editStates = {
     section: false,
@@ -8,17 +8,15 @@ function($scope, $rootScope, _, submitService, tinyMCEService){
     tinymce: false
   };
 
-  var elements = angular.element('body *');
-
-  // for (var i =1; i < ( 1 + elements.length ); i++){
-  //   angular.element(elements[i]).attr('data-id', i);
-  // }
-  // compare element's id with currentstate; if match { show }
+  $scope.onKeyUp = function($event){
+    if (window.event.keyCode == 90 && window.event.ctrlKey == true ){
+      userEditService.undoChange();
+    }
+  };
 
   $scope.page = {};
   $scope.states = ['home'];
   $scope.count = 0;
-
 
   // Listener for toggle events in the sidebar.
   $rootScope.$on('sidebar.toggled', function (ev, editStates) {
@@ -32,7 +30,7 @@ function($scope, $rootScope, _, submitService, tinyMCEService){
     if (!slideTag.length){
       slideTag = angular.element($event.currentTarget).closest('header');
     }
-
+    userEditService.addChange(slideTag);
     slideTag.attr('data-slide', $scope.states.length);
     // Tell checkbox to call its getDataSlide function.
     $scope.$broadcast('states.getDataSlide');
@@ -70,9 +68,6 @@ function($scope, $rootScope, _, submitService, tinyMCEService){
     });
   };
 
-
-  debugger;
-
   /*
   ----------------------------------------------------
   Tiny MCE
@@ -82,10 +77,11 @@ function($scope, $rootScope, _, submitService, tinyMCEService){
   $scope.previousId;
   $scope.mce = function (event) {
     tinyMCEService.clearEditors();
+    var nested_targ;
     var id;
     // handle edge cases to select textable
     if($scope.previousId) {
-      var nested_targ = event.target;
+      nested_targ = event.target;
       while (!nested_targ.class && (nested_targ.class !== "textable" )) {
         if (nested_targ.id) {
           id = nested_targ.id;
@@ -97,11 +93,16 @@ function($scope, $rootScope, _, submitService, tinyMCEService){
       id = event.target.id;
       $scope.previousId = id;
     }
+
+    var change = nested_targ || event.target;
+    change = angular.element(change).clone();
+    tinyMCEService.setPreviousNode = change;
+    
     tinyMCEService.initMCE(id);  
   }
   //sets a listener to 'textable' class tags
   // builds tinyMCE editor and hides selected tag
-  $scope.$watch('editStates.tinymce', function(newVal) {    
+  $scope.$watch('editStates.tinymce', function(newVal) {
     if (newVal) {
       angular.element('.textable').on('click', $scope.mce);
     } else {

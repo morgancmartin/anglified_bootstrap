@@ -1,7 +1,18 @@
 app.factory('tinyMCEService',
-['_', function( _ ) {
+['_', 'userEditService',
+function( _ , userEditService ) {
 
   var stub = {};
+
+  var _previousNode;
+
+  stub.getPreviousNode = function() {
+    return _previousNode;
+  };
+
+  stub.setPreviousNode = function(node) {
+    _previousNode = node;
+  };
 
   stub.clearEditors = function () {
     tinymce.remove('.textable');
@@ -23,6 +34,7 @@ app.factory('tinyMCEService',
             editor.insertContent('<button class="btn btn-info">DoNothing</button>');
           }
         });
+      
         editor.addButton('close', {
           text: 'Exit',
           icon: false,

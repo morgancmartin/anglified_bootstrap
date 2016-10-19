@@ -1,18 +1,21 @@
-<div class='comment-modal'>
-  <h1>Want comments in your app?</h1>
-
-  <label>
-    <h3>Blog post</h3>
-    <p>created at something something</p>
-    <p>Lorem and stuff </p><br>
-  </label><br>
-  <comment></comment>
-
-  <div ng-repeat='i in modal.comments'>
-    <h3>Comment number {{i}}</h3>
-    <p>created at something something by whoever</p>
-    <p>I love this blog!</p><br>
+<div class='panel panel-default comment-modal'>
+  <div class='panel-heading'>
+    <h1><small>Want</small> comments <small>in your</small> app?</h1>
+    <button class='btn btn-primary modal-btn' ng-click='modal.ok()'>Add comments</button>
   </div>
 
-  <button ng-click='modal.ok()'>Add comments</button>
+  <div class='panel-body'>
+    <label class='well well-sm'>
+      <h3>Blog post</h3>
+      <p class='lead'>created at something something</p>
+      <p>Lorem and stuff </p><br>
+      <comment></comment>
+    </label><br>
+
+    <div class='well well-sm' ng-repeat='i in modal.comments'>
+      <h3>Comment number {{i}}</h3>
+      <p class='lead'>created at something something by whoever</p>
+      <p>I love this blog!</p><br>
+    </div>
+  </div>
 </div>

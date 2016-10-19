@@ -1,0 +1,34 @@
+{
+  "name": "angular-jasmine-matchers",
+  "main": "./dist/matchers.js",
+  "dependencies": {
+    "angular": ">= 1.1.2"
+  },
+  "ignore": [
+    "**/.*",
+    "_*",
+    "node_modules",
+    "config",
+    "lib",
+    "test",
+    "DEVELOP.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "Gruntfile.js",
+    "browserstack.json",
+    "composer.json",
+    "package.json",
+    ".*"
+  ],
+  "homepage": "https://github.com/ferronrsmith/angularjs-jasmine-matchers",
+  "_release": "d6884d15ac",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "d6884d15aca8e916a4b6a3d7dec546e5565872ef"
+  },
+  "_source": "https://github.com/ferronrsmith/angularjs-jasmine-matchers.git",
+  "_target": "*",
+  "_originalSource": "angularjs-jasmine-matchers",
+  "_direct": true
+}
