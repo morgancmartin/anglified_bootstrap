@@ -1,6 +1,6 @@
 app.factory('tinyMCEService',
-['_', 'userEditService',
-function( _ , userEditService ) {
+['_', 'userEditService', '$timeout',
+function( _, userEditService, $timeout) {
 
   var stub = {};
 
@@ -19,7 +19,7 @@ function( _ , userEditService ) {
   };
 
   stub.initMCE = function(id) {
-    return tinymce.init({
+    tinymce.init({
       selector: ('#' + id),
       plugins: 'link image code wordcount',
       toolbar: 'mybutton | myimage | close | undo redo | bold italic | alignleft aligncenter alignright | code',
@@ -34,7 +34,7 @@ function( _ , userEditService ) {
             editor.insertContent('<button class="btn btn-info">DoNothing</button>');
           }
         });
-      
+
         editor.addButton('close', {
           text: 'Exit',
           icon: false,
@@ -49,10 +49,7 @@ function( _ , userEditService ) {
             editor.insertContent('<img style="height: 50px" src="https://cdn0.iconfinder.com/data/icons/iconshock_guys/512/andrew.png"></img>');
           }
         });
-      },
-      content_css: [
-        'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.min.css'
-      ]
+      }
     });
   };
 

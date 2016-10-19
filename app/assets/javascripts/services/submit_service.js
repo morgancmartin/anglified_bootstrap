@@ -12,7 +12,6 @@ app.factory('submitService', ["_", "Restangular", function(_, Restangular) {
   var _slideSplice = function($obj, collection){
     var header = _addHeadScripts();
     var output = {
-      // head: angular.element('head').prop('outerHTML'),
       head: header,
       body: {
         withEdits: $obj.prop('outerHTML')

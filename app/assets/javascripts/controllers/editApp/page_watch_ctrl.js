@@ -9,8 +9,11 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
   };
 
   $scope.onKeyUp = function($event){
-    if (window.event.keyCode == 90 && window.event.ctrlKey == true ){
-      userEditService.undoChange();
+    if (window.event.keyCode == 83 && window.event.ctrlKey == true ){
+      userEditService.undoSlideChange()
+      .then(function(response){
+
+      });
     }
   };
 
@@ -30,17 +33,17 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
     if (!slideTag.length){
       slideTag = angular.element($event.currentTarget).closest('header');
     }
-    userEditService.addChange(slideTag);
+    userEditService.addSlideChange(slideTag);
     slideTag.attr('data-slide', $scope.states.length);
     // Tell checkbox to call its getDataSlide function.
     $scope.$broadcast('states.getDataSlide');
     $scope.states.push(slideTag.attr('data-slide'));
-    $scope.nextState($scope.states.length);
+    $scope.nextState(slideTag.data('slide'));
   };
 
-  $scope.nextState = function(jump) {
-    if (jump){
-      $scope.count = jump - 1;
+  $scope.nextState = function(slideName) {
+    if (slideName){
+      $scope.count = _.findIndex($scope.states, slideName);
     } else {
       $scope.count = ($scope.count + 1) % $scope.states.length;
     }
@@ -96,10 +99,10 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
 
     var change = nested_targ || event.target;
     change = angular.element(change).clone();
-    tinyMCEService.setPreviousNode = change;
-    
-    tinyMCEService.initMCE(id);  
-  }
+    tinyMCEService.setPreviousNode(change);
+
+    tinyMCEService.initMCE(id);
+  };
   //sets a listener to 'textable' class tags
   // builds tinyMCE editor and hides selected tag
   $scope.$watch('editStates.tinymce', function(newVal) {
