@@ -5,15 +5,16 @@ class TemplateExtender
   attr_reader :doc
 
   def initialize(file_name = nil)
-    if file_name
-      file_loc = "https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-#{file_name}/master/index.html"
-      @doc = Nokogiri::HTML(open(file_loc))
-      @file_name = file_name
-    else
-      @doc = File.open("public/templates/new-age/index.html") do |f|
-        Nokogiri::HTML(f)
-      end
+    # if file_name
+    #   file_loc = "https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-#{file_name}/master/index.html"
+    #   @doc = Nokogiri::HTML(open(file_loc))
+    #   @file_name = file_name
+    # else
+    @doc = File.open("public/templates/new-age/index.html") do |f|
+      Nokogiri::HTML(f)
+      # end
     end
+    @file_name = 'new-age'
   end
 
   def run
@@ -33,11 +34,17 @@ class TemplateExtender
       if type == 'section' || type == 'header'
         add_section_attributes(node)
       elsif tiny_mce_node?(type)
-        node['class'] = 'textable'
+        if node['class']
+          node['class'] += ' textable'
+        else
+          node['class'] = ' textable'
+        end
         change_img_src(node) if type == 'img'
       elsif type == 'body'
         add_ng_controller_to_body(node)
         add_sidebar_to_body(node)
+      elsif type == 'script'
+        node.remove
       end
     end
   end

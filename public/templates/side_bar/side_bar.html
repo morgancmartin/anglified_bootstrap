@@ -1,16 +1,15 @@
 <!-- onToggle must be called as scope.onToggle({stateObj: thing}), -->
 <!-- where thing is what you want the parent to see as 'stateObj'.  -->
 <edit-sections
-edit='vm.editStates.section'
-on-toggle='vm.toggle(stateObj)'>
+edit='side.editStates.section'
+on-toggle='side.toggle(stateObj)'>
 </edit-sections>
 
-<edit-textboxes
-edit='vm.editStates.textbox'
-on-toggle='vm.toggle(stateObj)'>
-</edit-textboxes>
-
 <edit-mce
-edit='vm.editStates.tinymce'
-on-toggle='vm.toggle(stateObj)'>
+edit='side.editStates.tinymce'
+on-toggle='side.toggle(stateObj)'>
 </edit-mce>
+
+<blog-preview></blog-preview>
+
+<comment-preview></comment-preview>
