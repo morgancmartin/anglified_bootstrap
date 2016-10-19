@@ -18,7 +18,6 @@
 //= require angular-modal-service.min
 //= require angular-devise
 //= require angular-animate.min
-
 //= require bootstrap.min
 //= require new-age.min
 

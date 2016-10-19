@@ -12,6 +12,7 @@
 #
 src_files:
   - assets/application.js
+  - assets/jasmine_dependencies.js
 
 # stylesheets
 #
