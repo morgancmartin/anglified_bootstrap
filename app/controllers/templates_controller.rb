@@ -17,7 +17,7 @@ class TemplatesController < ApplicationController
   private
 
     def template_params
-      params.require(:template).permit(:head, :body => [:withEdits, :final])
+      params.require(:template).permit(:head, :body => [:withEdits, :final], :resource => [:cached, :type])
     end
 
     def set_nokogirized_template_by_name(name)
