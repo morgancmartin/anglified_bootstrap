@@ -1,7 +1,12 @@
 // Will add RESTful functionality in the future.
 app.controller('BlogModalCtrl',
-['$uibModalInstance', function ($uibModalInstance) {
+['$uibModalInstance', 'data',
+function ($uibModalInstance, data) {
   var vm = this;
+
+  vm.data = data;
+
+  console.log(data);
 
   vm.ok = function () {
    $uibModalInstance.close();
@@ -13,14 +18,21 @@ app.controller('BlogModalCtrl',
 }]);
 
 app.controller('BlogPreviewCtrl',
-['ResourceService', '$uibModal', '$element',
-function (ResourceService, $uibModal, $element) {
+['ResourceService', '$uibModal', '$element', 'ResourceGenerator', '$injector',
+function (ResourceService, $uibModal, $element, ResourceGenerator, $injector) {
   var vm = this;
 
   vm.addResource = function () {
     ResourceService.addResource('blog');
   };
 
+  vm.$onInit = function () {
+    var generatedResource = ResourceGenerator.generate('blogs', 'data', '.json');
+    vm.blogs = $injector.instantiate(generatedResource);
+    return vm.blogs.all();
+  };
+
+  // Modal functionality.
   vm.open = function (size) {
     var parentElem = angular.element($element);
     var modalInstance = $uibModal.open({
@@ -29,7 +41,10 @@ function (ResourceService, $uibModal, $element) {
       controller: 'BlogModalCtrl',
       controllerAs: 'modal',
       size: size,
-      appendTo: parentElem
+      appendTo: parentElem,
+      resolve: {
+        data: vm.blogs.all
+      }
     });
 
     modalInstance.result.then(vm.addResource);
