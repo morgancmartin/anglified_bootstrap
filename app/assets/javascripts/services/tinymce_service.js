@@ -18,6 +18,34 @@ function( _, userEditService, $timeout) {
     tinymce.remove('.textable');
   };
 
+  var _previousId;
+
+  stub.callMCE = function(event) {
+    stub.clearEditors();
+    var nested_targ;
+    var id;
+    // handle edge cases to select textable
+    if(_previousId) {
+      nested_targ = event.target;
+      while (!nested_targ.class && (nested_targ.class !== "textable" )) {
+        if (nested_targ.id) {
+          id = nested_targ.id;
+          break;
+        }
+        nested_targ = angular.element(nested_targ).parent()[0];
+      }
+    } else {
+      id = event.target.id;
+      _previousId = id;
+    }
+
+    var change = nested_targ || event.target;
+    change = angular.element(change).clone();
+    stub.setPreviousNode(change);
+
+    stub.initMCE(id);
+  };
+
   stub.initMCE = function(id) {
     tinymce.init({
       selector: ('#' + id),

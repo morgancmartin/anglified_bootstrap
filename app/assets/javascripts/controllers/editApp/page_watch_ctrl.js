@@ -81,34 +81,10 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
   ----------------------------------------------------
   */
 
-  $scope.previousId;
-  $scope.mce = function (event) {
-    tinyMCEService.clearEditors();
-    var nested_targ;
-    var id;
-    // handle edge cases to select textable
-    if($scope.previousId) {
-      nested_targ = event.target;
-      while (!nested_targ.class && (nested_targ.class !== "textable" )) {
-        if (nested_targ.id) {
-          id = nested_targ.id;
-          break;
-        }
-        nested_targ = angular.element(nested_targ).parent()[0];
-      }
-    } else {
-      id = event.target.id;
-      $scope.previousId = id;
-    }
-
-    var change = nested_targ || event.target;
-    change = angular.element(change).clone();
-    tinyMCEService.setPreviousNode(change);
-
-    tinyMCEService.initMCE(id);
+  $scope.mce = function(event) {
+    tinyMCEService.callMCE(event);
   };
-  //sets a listener to 'textable' class tags
-  // builds tinyMCE editor and hides selected tag
+
   $scope.$watch('editStates.tinymce', function(newVal) {
     if (newVal) {
       angular.element('.textable').on('click', $scope.mce);
@@ -118,6 +94,5 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
       console.log("tinyMCE listeners OFF");
     }
   });
-
 
 }]);
