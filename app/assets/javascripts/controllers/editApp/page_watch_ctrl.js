@@ -12,14 +12,6 @@ function($scope, $rootScope, _, submitService){
 
   $scope.states = ['home'];
   $scope.count = 0;
-  $scope.nextState = function (slideTo) {
-    if(slideTo){
-      $scope.count = slideTo;
-    } else {
-      $scope.count = ($scope.count + 1) % $scope.states.length;
-    }
-    $scope.$broadcast('states.nextState', $scope.states, $scope.count);
-  };
 
   // Clicking 'make a new slide' on a section/header/footer
   // should take it out of the main page and give it its own slide.
@@ -62,7 +54,6 @@ function($scope, $rootScope, _, submitService){
   // Toggle true/false
   $scope.checkboxValues = {};
   $rootScope.$on('checkbox.value', function (ev, checkboxValue) {
-    console.log('$scope.checkboxValues');
     if ($scope.checkboxValues[checkboxValue]) {
       $scope.checkboxValues[checkboxValue] = !$scope.checkboxValues[checkboxValue];
     } else {
@@ -70,6 +61,7 @@ function($scope, $rootScope, _, submitService){
     }
   });
 
+  // Storing data to be sent to the Rails API.
   $scope.submitPage = function(){
     submitService.submitPage($scope.states).then(function(response){
       console.log(response);
@@ -94,7 +86,7 @@ function($scope, $rootScope, _, submitService){
           if (nested_targ.id) {
             id = nested_targ.id;
             break;
-          } 
+          }
           nested_targ = angular.element(nested_targ).parent()[0];
         }
       } else {
@@ -138,7 +130,7 @@ function($scope, $rootScope, _, submitService){
       });
   };
 
-  //sets a listener to 'textable' class tags 
+  //sets a listener to 'textable' class tags
   // builds tinyMCE editor and hides selected tag
   $scope.$watch('editStates.tinymce', function(newVal) {    
     if (newVal) {

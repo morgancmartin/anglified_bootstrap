@@ -11,9 +11,6 @@ app.controller('SideBarCtrl', ['$rootScope', function ($rootScope) {
   vm.toggle = function (stateObj) {
     vm.editStates[stateObj.type] = stateObj.bool;
     // Pass editStates obj to master controller.
-    
-    console.log(vm.editStates.tinymce);
-
     $rootScope.$emit('sidebar.toggled', vm.editStates);
   };
 }]);
@@ -21,7 +18,7 @@ app.controller('SideBarCtrl', ['$rootScope', function ($rootScope) {
 app.directive('sideBar', function () {
   return {
     controller: 'SideBarCtrl',
-    controllerAs: 'vm',
+    controllerAs: 'side',
     restrict: 'E',
     scope: {},
     templateUrl: 'templates/side_bar/side_bar.html'
