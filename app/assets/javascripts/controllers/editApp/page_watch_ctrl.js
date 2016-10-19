@@ -43,11 +43,11 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
 
   $scope.nextState = function(slideName) {
     if (slideName){
-      $scope.count = _.findIndex($scope.states, slideName);
+      $scope.count = $scope.states.indexOf(slideName.toString());
     } else {
       $scope.count = ($scope.count + 1) % $scope.states.length;
     }
-    $scope.$broadcast('states.nextState', $scope.states[$scope.count] );
+    $scope.$broadcast('states.nextState', $scope.states[$scope.count]);
   };
 
   // Checkbox values for sections.
