@@ -80,6 +80,13 @@ function($scope, $rootScope, _, submitService){
   $scope.previousId;
   $scope.mce = function (event) {
     var id;
+
+    for (var i = tinymce.editors.length - 1 ; i > -1 ; i--) {
+      var ed_id = tinymce.editors[i].id;
+      tinyMCE.execCommand("mceRemoveEditor", true, ed_id);
+    }
+
+
       if($scope.previousId) {
         var nested_targ = event.target;
         while (!nested_targ.class && (nested_targ.class !== "textable" )) {
