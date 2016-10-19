@@ -12,10 +12,10 @@
       <comment></comment>
     </label><br>
 
-    <div class='well well-sm' ng-repeat='i in modal.comments'>
-      <h3>Comment number {{i}}</h3>
-      <p class='lead'>created at something something by whoever</p>
-      <p>I love this blog!</p><br>
+    <div class='well well-sm' ng-repeat='c in modal.data.cache'>
+      <h3>{{c.author}}</h3>
+      <p class='lead'>created at {{c.created_at | date}}</p>
+      <p>{{c.body}}</p><br>
     </div>
   </div>
 </div>
