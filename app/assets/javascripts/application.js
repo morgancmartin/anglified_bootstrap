@@ -14,6 +14,9 @@
 //= require jquery.min
 //= require jquery_ujs
 //= require jquery-ui.min
+
+//= require jquery.fullPage
+
 //= require angular
 //= require angular-ui-router
 //= require angular-modal-service.min
@@ -31,6 +34,6 @@
 //= require lodash.min
 //= require restangular
 //= require pluralize
-//= require jquery.fullPage
+
 //= require new-age.min
 //= require_tree .
