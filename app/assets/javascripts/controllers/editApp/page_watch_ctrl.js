@@ -1,12 +1,17 @@
 app.controller('PageWatchCtrl',
-['$scope', '$rootScope', "_", 'submitService',
-function($scope, $rootScope, _, submitService){
-  var elements = angular.element('body *');
+['$scope', '$rootScope', "_", 'submitService', 'userEditService',
+function($scope, $rootScope, _, submitService, userEditService){
+  // var elements = angular.element('body *');
 
-  for (var i =1; i < ( 1 + elements.length ); i++){
-    angular.element(elements[i]).attr('data-id', i);
-  }
-  // compare element's id with currentstate; if match { show }
+  // for (var i =1; i < ( 1 + elements.length ); i++){
+  //   angular.element(elements[i]).attr('data-id', i);
+  // }
+
+  $scope.onKeyUp = function($event){
+    if (window.event.keyCode == 90 && window.event.ctrlKey == true ){
+      userEditService.undoChange();
+    }
+  };
 
   $scope.page = {};
 
@@ -20,7 +25,7 @@ function($scope, $rootScope, _, submitService){
     if (!slideTag.length){
       slideTag = angular.element($event.currentTarget).closest('header');
     }
-
+    userEditService.addChange(slideTag);
     slideTag.attr('data-slide', $scope.states.length);
     // Tell checkbox to call its getDataSlide function.
     $scope.$broadcast('states.getDataSlide');
@@ -132,7 +137,7 @@ function($scope, $rootScope, _, submitService){
 
   //sets a listener to 'textable' class tags
   // builds tinyMCE editor and hides selected tag
-  $scope.$watch('editStates.tinymce', function(newVal) {    
+  $scope.$watch('editStates.tinymce', function(newVal) {
     if (newVal) {
       angular.element('.textable').on('click', $scope.mce);
     } else {

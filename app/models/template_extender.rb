@@ -51,6 +51,8 @@ class TemplateExtender
 
   def add_ng_controller_to_body(node)
     node['ng-controller'] = 'PageWatchCtrl'
+    # added this for ctrl-z undo funcitonality
+    node['ng-keyup'] = "onKeyUp($event)"
   end
 
   def change_img_src(node)
