@@ -34,6 +34,8 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'faker'
+
+  # test stuff
   gem 'jasmine'
 end
 

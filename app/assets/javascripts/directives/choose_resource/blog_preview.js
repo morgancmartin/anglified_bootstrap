@@ -13,14 +13,21 @@ app.controller('BlogModalCtrl',
 }]);
 
 app.controller('BlogPreviewCtrl',
-['ResourceService', '$uibModal', '$element',
-function (ResourceService, $uibModal, $element) {
+['ResourceService', '$uibModal', '$element', 'ResourceGenerator', '$injector',
+function (ResourceService, $uibModal, $element, ResourceGenerator, $injector) {
   var vm = this;
 
   vm.addResource = function () {
     ResourceService.addResource('blog');
   };
 
+  // Generated service.
+  // ResourceGenerator.generate('users', app);
+  vm.users = $injector.instantiate(ResourceGenerator.generate('users'));
+
+  console.log(vm.users.all());
+
+  // Modal functionality.
   vm.open = function (size) {
     var parentElem = angular.element($element);
     var modalInstance = $uibModal.open({
