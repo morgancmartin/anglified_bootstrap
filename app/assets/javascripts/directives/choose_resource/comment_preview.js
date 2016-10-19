@@ -3,7 +3,7 @@ app.controller('CommentModalCtrl',
 ['$uibModalInstance', 'data', function ($uibModalInstance, data) {
   var vm = this;
 
-  vm.comments = data;
+  vm.data = data;
 
   vm.ok = function () {
    $uibModalInstance.close();
@@ -15,12 +15,18 @@ app.controller('CommentModalCtrl',
 }]);
 
 app.controller('CommentPreviewCtrl',
-['ResourceService', '$element', '$uibModal',
-function (ResourceService, $element, $uibModal) {
+['ResourceService', '$element', '$uibModal', 'ResourceGenerator', '$injector',
+function (ResourceService, $element, $uibModal, ResourceGenerator, $injector) {
   var vm = this;
 
   vm.addResource = function () {
     ResourceService.addResource('comment');
+  };
+
+  vm.$onInit = function () {
+    var generatedResource = ResourceGenerator.generate('comments', 'data', '.json');
+    vm.comments = $injector.instantiate(generatedResource);
+    return vm.comments.all();
   };
 
   vm.open = function (size) {
@@ -33,9 +39,7 @@ function (ResourceService, $element, $uibModal) {
       size: size,
       appendTo: parentElem,
       resolve: {
-        data: function () {
-          return [1,2,3,4,5];
-        }
+        data: vm.comments.all
       }
     });
   };
