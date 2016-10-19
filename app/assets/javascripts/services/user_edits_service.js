@@ -5,7 +5,7 @@ app.factory('userEditService', ["_", function(_) {
   var _changes = [];
 
   userEdit.addChange = function(el){
-    var $el = el.clone();
+    var $el = el.clone() || angular.element(el).clone();
 
     // add a clone of hte object that is being changed, able to find it by data-id
     var obj = {
@@ -19,8 +19,11 @@ app.factory('userEditService', ["_", function(_) {
 
   userEdit.undoChange = function(){
     if(_changes.length){
-        return _changes.pop();
+        var oldEle = _changes.pop();
+
+        angular.element("[data-id='" + oldEle.node.attr('data-id') + "']").replaceWith(oldEle.node);
     }
+    console.log(_changes);
     return;
   };
 
