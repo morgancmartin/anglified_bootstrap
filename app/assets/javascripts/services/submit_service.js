@@ -1,18 +1,28 @@
-app.factory('submitService', ["_", "Restangular", function(_, Restangular) {
+app.factory('submitService', ["_", "Restangular", "ResourceService", function(_, Restangular, ResourceService) {
 
   var submitPage = function(slideStack){
-    var output = {};
     var $body = angular.element('body').clone();
     $body = _removeEditor($body);
     output = _slideSplice($body, slideStack);
-    console.log(output);
+    _addResource(output);
+    // console.log(output);
     return Restangular.all("templates").post(output);
+  };
+
+  var _addResource = function(obj){
+    ResourceService.all()
+      .then(function(response){
+        if (!(_.isEmpty(response.cached))){
+          console.log(response.cached);
+          obj.resource = response;
+        }
+        return response;
+      });
   };
 
   var _slideSplice = function($obj, collection){
     var header = _addHeadScripts();
     var output = {
-      // head: angular.element('head').prop('outerHTML'),
       head: header,
       body: {
         withEdits: $obj.prop('outerHTML')
@@ -34,7 +44,6 @@ app.factory('submitService', ["_", "Restangular", function(_, Restangular) {
     });
     var newBody = _newBody($bodyWrapper);
     output.body.final = newBody;
-    console.log(newBody);
     return output;
   };
 
