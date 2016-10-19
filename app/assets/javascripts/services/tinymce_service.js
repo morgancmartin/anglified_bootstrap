@@ -51,7 +51,7 @@ function( _ , userEditService ) {
         });
       },
       content_css: [
-        'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.min.css'
+        // 'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.min.css'
       ]
     });
   };

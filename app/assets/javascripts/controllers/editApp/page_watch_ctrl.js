@@ -1,6 +1,38 @@
 app.controller('PageWatchCtrl',
-['$scope', '$rootScope', "_", 'submitService', 'tinyMCEService', 'userEditService',
-function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
+['$scope', '$rootScope', "_", 'submitService', 'tinyMCEService', 'userEditService', 'sectionService',
+function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, sectionService){
+
+
+  /**
+    ADRIAN_REFACTOR
+    **/
+  $scope.go = function() {
+    console.log("current state is: ", $scope.states[$scope.count]);
+    $scope.nextState();
+    console.log($scope.states);
+    
+  };
+
+  /**
+    ADRIAN_REFACTOR
+    **/
+  $scope.test = function() {
+    console.log("currentState is: " + $scope.states[$scope.count] );
+    
+    var nav = angular.element('.nav.navbar-nav.navbar-right');
+    // clearing the navbar-right, adding next slide button
+    nav.html('');
+    // adding the next state button
+    // var prev = angular.element('<button id="navbarPrev" class="page-scroll textable btn btn-sm btn-danger">Previous State</button>');
+    var next = angular.element('<button id="navbarRight" class="page-scroll textable btn btn-sm btn-primary">Next State</button>');
+    // nav.append(prev).click($scope.go());
+    nav.append(next);
+    next.click( function() {
+      console.log("omg");
+      $scope.go();
+    });
+    
+  };
 
   $scope.editStates = {
     section: false,
@@ -27,6 +59,9 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
   // should take it out of the main page and give it its own slide.
   $scope.createSlide = function($event){
     var slideTag = angular.element($event.currentTarget).closest('section');
+
+    console.log('this is the slideTag: ' , slideTag);
+
     if (!slideTag.length){
       slideTag = angular.element($event.currentTarget).closest('header');
     }
@@ -35,11 +70,30 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
     // Tell checkbox to call its getDataSlide function.
     $scope.$broadcast('states.getDataSlide');
     $scope.states.push(slideTag.attr('data-slide'));
+
+
+    /**
+    ADRIAN_REFACTOR
+    **/
+    var index = $scope.states.length;
+    var section = angular.element('<button' + 
+      ' id="nav' + ($scope.states.length - 1) +
+      '" class="page-scroll textable btn btn-sm btn-primary">' + slideTag.attr('data-slide') + '</button>');
+    angular.element('.nav.navbar-nav.navbar-right').append(
+      section);
+    section.click( function () {
+      console.log('the new index: ', index);
+      $scope.nextState(index);
+    });
+    
+    
+
     $scope.nextState($scope.states.length);
   };
 
   $scope.nextState = function(jump) {
     if (jump){
+      jump = jump % $scope.states.length;
       $scope.count = jump - 1;
     } else {
       $scope.count = ($scope.count + 1) % $scope.states.length;
