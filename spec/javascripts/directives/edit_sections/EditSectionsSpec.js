@@ -1,7 +1,7 @@
 describe('editSections', function () {
   beforeEach(module('editApp'));
 
-  var scope, element, directive, checkBox, $compile, $rootScope, $httpBackend;
+  var scope, element, directive, checkBox, $compile, $rootScope, $httpBackend, isolate;
 
   beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_) {
     $compile = _$compile_;

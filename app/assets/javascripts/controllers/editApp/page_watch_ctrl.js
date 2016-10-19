@@ -32,6 +32,7 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, 
       $scope.go();
     });
     
+    $scope.addNavLink('home');
   };
 
   $scope.editStates = {
@@ -41,13 +42,21 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, 
   };
 
   $scope.onKeyUp = function($event){
-    if (window.event.keyCode == 90 && window.event.ctrlKey == true ){
-      userEditService.undoChange();
+    if (window.event.keyCode == 83 && window.event.ctrlKey == true ){
+      userEditService.undoSlideChange()
+      .then(function(slideStateObj){
+        var axedSlideIdx = $scope.states.indexOf(slideStateObj.prevSlideName);
+        $scope.states.splice(axedSlideIdx, 1);
+        $scope.nextState(slideStateObj.toSlideName);
+        return slideStateObj;
+      });
     }
   };
 
   $scope.page = {};
   $scope.states = ['home'];
+
+  
   $scope.count = 0;
 
   // Listener for toggle events in the sidebar.
@@ -65,40 +74,44 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, 
     if (!slideTag.length){
       slideTag = angular.element($event.currentTarget).closest('header');
     }
-    userEditService.addChange(slideTag);
+    userEditService.addSlideChange(slideTag);
     slideTag.attr('data-slide', $scope.states.length);
     // Tell checkbox to call its getDataSlide function.
     $scope.$broadcast('states.getDataSlide');
     $scope.states.push(slideTag.attr('data-slide'));
 
+    $scope.addNavLink(slideTag.attr('data-slide'));
+    $scope.nextState(slideTag.attr('data-slide'));
+  };
 
-    /**
+
+  /**
     ADRIAN_REFACTOR
     **/
-    var index = $scope.states.length;
-    var section = angular.element('<button' + 
-      ' id="nav' + ($scope.states.length - 1) +
-      '" class="page-scroll textable btn btn-sm btn-primary">' + slideTag.attr('data-slide') + '</button>');
+  $scope.addNavLink = function(slideName) {
+    var index = $scope.states.length - 1;
+    var section = angular.element('<button>')
+      .attr('id', "nav='" + index + "'" )
+      .addClass('page-scroll textable btn btn-sm btn-primary')
+      .text(slideName);
     angular.element('.nav.navbar-nav.navbar-right').append(
       section);
     section.click( function () {
       console.log('the new index: ', index);
-      $scope.nextState(index);
+      $scope.nextState(slideName);
     });
-    
-    
+  }
 
-    $scope.nextState($scope.states.length);
-  };
 
-  $scope.nextState = function(jump) {
-    if (jump){
-      jump = jump % $scope.states.length;
-      $scope.count = jump - 1;
+
+  $scope.nextState = function(slideName) {
+    console.log(slideName);
+    if (slideName){
+      $scope.count = $scope.states.indexOf(slideName.toString());
     } else {
       $scope.count = ($scope.count + 1) % $scope.states.length;
     }
-    $scope.$broadcast('states.nextState', $scope.states[$scope.count] );
+    $scope.$broadcast('states.nextState', $scope.states[$scope.count]);
   };
 
   // Checkbox values for sections.
@@ -128,34 +141,10 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, 
   ----------------------------------------------------
   */
 
-  $scope.previousId;
-  $scope.mce = function (event) {
-    tinyMCEService.clearEditors();
-    var nested_targ;
-    var id;
-    // handle edge cases to select textable
-    if($scope.previousId) {
-      nested_targ = event.target;
-      while (!nested_targ.class && (nested_targ.class !== "textable" )) {
-        if (nested_targ.id) {
-          id = nested_targ.id;
-          break;
-        }
-        nested_targ = angular.element(nested_targ).parent()[0];
-      }
-    } else {
-      id = event.target.id;
-      $scope.previousId = id;
-    }
+  $scope.mce = function(event) {
+    tinyMCEService.callMCE(event);
+  };
 
-    var change = nested_targ || event.target;
-    change = angular.element(change).clone();
-    tinyMCEService.setPreviousNode = change;
-    
-    tinyMCEService.initMCE(id);  
-  }
-  //sets a listener to 'textable' class tags
-  // builds tinyMCE editor and hides selected tag
   $scope.$watch('editStates.tinymce', function(newVal) {
     if (newVal) {
       angular.element('.textable').on('click', $scope.mce);
@@ -165,6 +154,5 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, 
       console.log("tinyMCE listeners OFF");
     }
   });
-
 
 }]);
