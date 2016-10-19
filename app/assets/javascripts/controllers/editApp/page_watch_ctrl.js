@@ -11,8 +11,11 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
   $scope.onKeyUp = function($event){
     if (window.event.keyCode == 83 && window.event.ctrlKey == true ){
       userEditService.undoSlideChange()
-      .then(function(response){
-
+      .then(function(slideStateObj){
+        var axedSlideIdx = $scope.states.indexOf(slideStateObj.prevSlideName);
+        $scope.states.splice(axedSlideIdx, 1);
+        $scope.nextState(slideStateObj.toSlideName);
+        return slideName;
       });
     }
   };
@@ -42,6 +45,7 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
   };
 
   $scope.nextState = function(slideName) {
+    console.log(slideName);
     if (slideName){
       $scope.count = $scope.states.indexOf(slideName.toString());
     } else {

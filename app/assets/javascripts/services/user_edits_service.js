@@ -10,7 +10,7 @@ app.factory('userEditService', ["_", function(_) {
     // add a clone of hte object that is being changed, able to find it by data-id
     var obj = {
       dataID: $el.data('id'),
-      node: $el
+      slideName: $el.data('slide')
     };
     _slideChanges.push(obj);
     return;
@@ -20,8 +20,10 @@ app.factory('userEditService', ["_", function(_) {
 
     if(_slideChanges.length){
         var oldEle = _slideChanges.pop();
-        angular.element("[data-id='" + oldEle.node.attr('data-id') + "']").replaceWith(oldEle.node);
-        return Promise.resolve(oldEle.node.data('slide'));
+        var $ele = angular.element("[data-id='" + oldEle.dataID + "']");
+        var axedSlide = $ele.data('slide');
+        $ele.attr('data-slide', oldEle.slideName);
+        return Promise.resolve({ toSlideName: oldEle.slideName, prevSlideName: axedSlide });
     }
     return;
   };
