@@ -8,13 +8,13 @@
     <label class='well well-sm'>
       <h3>New Blog Post.</h3>
       <textarea class='form-control' rows='5'></textarea><br>
-      <button ng-hide='vm.hideMe' class='btn btn-primary btn-xs'>submit</button>
+      <button class='btn btn-primary btn-xs'>submit</button>
     </label><br>
 
-    <div class='well well-lg' ng-repeat='i in [1,2,3,4,5]'>
-      <h3>Blog number {{i}}</h3>
-      <p class='lead'>created at something something</p>
-      <p>Lorem and stuff </p><br>
+    <div class='well well-lg' ng-repeat='b in modal.data.cache'>
+      <h3>{{b.title}}</h3>
+      <p class='lead'>created at {{b.created_at}} by {{b.author}}</p>
+      <p>{{b.body}}</p><br>
     </div>
   </div>
 </div>
