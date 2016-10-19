@@ -15,7 +15,7 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
         var axedSlideIdx = $scope.states.indexOf(slideStateObj.prevSlideName);
         $scope.states.splice(axedSlideIdx, 1);
         $scope.nextState(slideStateObj.toSlideName);
-        return slideName;
+        return slideStateObj;
       });
     }
   };
