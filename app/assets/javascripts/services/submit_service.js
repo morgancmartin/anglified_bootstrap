@@ -3,29 +3,28 @@ app.factory('submitService', ["_", "Restangular", "ResourceService", function(_,
   var submitPage = function(slideStack){
     var $body = angular.element('body').clone();
     $body = _removeEditor($body);
-    output = _slideSplice($body, slideStack);
-    _addResource(output);
-    // console.log(output);
+    var output = _slideSplice($body, slideStack);
+    _addStuff(output);
+    console.log(output);
     return Restangular.all("templates").post(output);
   };
 
-  var _addResource = function(obj){
-    ResourceService.all()
-      .then(function(response){
-        if (!(_.isEmpty(response.cached))){
-          console.log(response.cached);
-          obj.resource = response;
-        }
-        return response;
-      });
+  var _addStuff = function(obj){
+    var resources = ResourceService.all();
+    if (!(_.isEmpty(resources.cached))){
+      console.log(resources.cached);
+      obj.template.stuff = resources;
+    }
   };
 
   var _slideSplice = function($obj, collection){
     var header = _addHeadScripts();
     var output = {
-      head: header,
-      body: {
-        withEdits: $obj.prop('outerHTML')
+      template: {
+        head: header,
+        body: {
+          withEdits: $obj.prop('outerHTML')
+        }
       }
     };
 
@@ -43,7 +42,7 @@ app.factory('submitService', ["_", "Restangular", "ResourceService", function(_,
       $bodyWrapper.append($sectionWrapper);
     });
     var newBody = _newBody($bodyWrapper);
-    output.body.final = newBody;
+    output.template.body.final = newBody;
     return output;
   };
 
