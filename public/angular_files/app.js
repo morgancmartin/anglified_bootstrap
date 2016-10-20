@@ -1,12 +1,12 @@
 // loads angular app with selected modules
-var app = angular.module('yourApp', ['restangular', "ui.router", 'fullPage.js']);
+var yourApp = angular.module('yourApp', ['restangular', "ui.router", 'fullPage.js']);
 
-app.factory('_', ['$window', function($window){
+yourApp.factory('_', ['$window', function($window){
   return $window._;
 }]);
 
 // CSRF support
-frontApp.config(
+yourApp.config(
   ["$httpProvider",
   function($httpProvider) {
     var token = $('meta[name=csrf-token]')

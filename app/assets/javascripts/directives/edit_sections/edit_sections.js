@@ -1,4 +1,4 @@
-app.directive('editSections', function () {
+app.directive('editSections', [function () {
   return {
     restrict: 'E',
     scope: {
@@ -20,4 +20,4 @@ app.directive('editSections', function () {
       };
     }
   };
-});
+}]);

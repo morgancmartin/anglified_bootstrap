@@ -1,4 +1,4 @@
-app.controller('TinyMceCtrl', 
+app.controller('TinyMceCtrl',
   ['$scope', function($scope) {
 
   $scope.previousId;
@@ -16,7 +16,7 @@ app.controller('TinyMceCtrl',
         if (nested_targ.id) {
           id = nested_targ.id;
           break;
-        } 
+        }
         nested_targ = angular.element(nested_targ).parent()[0];
       }
     } else {
@@ -56,5 +56,5 @@ app.controller('TinyMceCtrl',
         'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.min.css'
       ]
     });
-  })
+  });
 }]);
