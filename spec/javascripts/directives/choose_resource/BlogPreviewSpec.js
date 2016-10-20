@@ -1,3 +1,70 @@
+// Modal Controller.
+describe('BlogModalCtrl', function () {
+  var ctrl, $rootScope, $controller, modalInstance, data;
+
+  beforeEach(module('editApp'));
+
+  beforeEach(inject(function(_$rootScope_, _$controller_) {
+    $rootScope = _$rootScope_;
+    $controller = _$controller_;
+
+    // Mock modal and data.
+    modalInstance = {
+      opened: true,
+      dismissed: false,
+      close: function () {
+        var modal = this;
+        modal.opened = false;
+        modal.dismissed = false;
+      },
+      dismiss: function (type) {
+        var modal = this;
+        modal.opened = false;
+        modal.dismissed = true;
+      }
+    };
+    data = [];
+
+    // Stub the controller.
+    ctrl = $controller('BlogModalCtrl', {
+      $uibModalInstance: modalInstance,
+      data: data
+    });
+  }));
+
+  describe('ok', function () {
+    beforeEach(function () {
+      expect(modalInstance.opened).toBe(true);
+      expect(modalInstance.dismissed).toBe(false);
+      ctrl.ok();
+    });
+
+    it("should close the modal", function () {
+      expect(modalInstance.opened).toBe(false);
+    });
+
+    it("should not dismiss the modal", function () {
+      expect(modalInstance.dismissed).toBe(false);
+    });
+  });
+
+  describe('cancel', function () {
+    beforeEach(function () {
+      expect(modalInstance.opened).toBe(true);
+      expect(modalInstance.dismissed).toBe(false);
+      ctrl.cancel();
+    });
+    it("should close the modal", function () {
+      expect(modalInstance.opened).toBe(false);
+    });
+
+    it("should dismiss the modal", function () {
+      expect(modalInstance.dismissed).toBe(true);
+    });
+  });
+});
+
+// Directive.
 describe('BlogPreview', function () {
   var ctrl, $rootScope, $scope, $element, $compile, $http;
   var mockBlogs = [
@@ -37,7 +104,7 @@ describe('BlogPreview', function () {
   }));
 
   describe('blogs', function () {
-    it("returns all the blogs in the database", function (done) {
+    it("should return all the blogs in the database", function (done) {
       function testBlogsData (data) {
         expect(data.cached.length).toEqual(2);
       }
