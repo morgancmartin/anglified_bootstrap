@@ -1,7 +1,6 @@
 // For community page.
 var frontApp = angular.module('indexApp',
-  ['restangular', 'Devise', 'ngAnimate', 'ui.bootstrap']
-  );
+  ['restangular', 'Devise', 'ngAnimate', 'ui.bootstrap']);
 
 frontApp.factory('$', ['$window', function($window){
   return $window.$;
