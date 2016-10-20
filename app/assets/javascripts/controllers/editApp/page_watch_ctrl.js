@@ -1,39 +1,6 @@
 app.controller('PageWatchCtrl',
-['$scope', '$rootScope', "_", 'submitService', 'tinyMCEService', 'userEditService', 'sectionService',
-function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, sectionService){
-
-
-  /**
-    ADRIAN_REFACTOR
-    **/
-  $scope.go = function() {
-    console.log("current state is: ", $scope.states[$scope.count]);
-    $scope.nextState();
-    console.log($scope.states);
-    
-  };
-
-  /**
-    ADRIAN_REFACTOR
-    **/
-  $scope.test = function() {
-    console.log("currentState is: " + $scope.states[$scope.count] );
-    
-    var nav = angular.element('.nav.navbar-nav.navbar-right');
-    // clearing the navbar-right, adding next slide button
-    nav.html('');
-    // adding the next state button
-    // var prev = angular.element('<button id="navbarPrev" class="page-scroll textable btn btn-sm btn-danger">Previous State</button>');
-    var next = angular.element('<button id="navbarRight" class="page-scroll textable btn btn-sm btn-primary">Next State</button>');
-    // nav.append(prev).click($scope.go());
-    nav.append(next);
-    next.click( function() {
-      console.log("omg");
-      $scope.go();
-    });
-    
-    $scope.addNavLink('home');
-  };
+['$scope', '$rootScope', "_", 'submitService', 'tinyMCEService', 'userEditService', 'navSectionService',
+function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, navSectionService){
 
   $scope.editStates = {
     section: false,
@@ -55,8 +22,6 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, 
 
   $scope.page = {};
   $scope.states = ['home'];
-
-  
   $scope.count = 0;
 
   // Listener for toggle events in the sidebar.
@@ -83,7 +48,6 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, 
     $scope.addNavLink(slideTag.attr('data-slide'));
     $scope.nextState(slideTag.attr('data-slide'));
   };
-
 
   /**
     ADRIAN_REFACTOR
@@ -134,6 +98,25 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, 
       console.log(reason);
     });
   };
+
+
+  navSectionService.setUpNav($scope.nextState);
+  // var p1 = new Promise( function(resolve, reject) {
+  //    window.setTimeout( function() {
+  //     resolve(navSectionService.clearNav());
+  //     }, 0);
+  //   });
+
+  // var p2 = new Promise( function(resolve, reject) {
+  //     window.setTimeout( function() {
+  //       resolve(navSectionService.addScrollButton()
+  //         .click($scope.nextState() ));
+  //     }, 0);
+  //   });
+
+  // p1.then(function() { console.log('hi0'); p2.then(console.log('hi'))});
+
+  // .click( function() { $scope.nextState() });
 
   /*
   ----------------------------------------------------
