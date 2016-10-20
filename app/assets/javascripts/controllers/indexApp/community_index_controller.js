@@ -1,6 +1,4 @@
-frontApp.controller('CommunityIndexCtrl',
-  ['$scope', '$',
-  function($scope, $ ) {
+frontApp.controller('CommunityIndexCtrl', ['$scope', '$', 'TemplateService', function($scope, $, TemplateService ) {
 
   $scope.selected;
 
@@ -10,33 +8,10 @@ frontApp.controller('CommunityIndexCtrl',
 
   console.log('you are in communityIndex controller');
 
-  $scope.templates = {
-    1 : {
-      id: 1,
-      url: 'https://startbootstrap.com/img/templates/creative.jpg',
-      linkTo: 'https://blackrockdigital.github.io/startbootstrap-stylish-portfolio/'
-    },
-    2 : {
-      id: 2,
-      url: 'https://startbootstrap.com/img/templates/new-age.jpg',
-      linkTo: 'https://blackrockdigital.github.io/startbootstrap-stylish-portfolio/'
-    },
-    3 : {
-      id: 3,
-      url: 'https://startbootstrap.com/img/templates/agency.jpg',
-      linkTo: 'https://blackrockdigital.github.io/startbootstrap-stylish-portfolio/'
-    },
-    4 : {
-      id: 4,
-      url: 'https://startbootstrap.com/img/premium/vitality.jpg',
-      linkTo: 'https://blackrockdigital.github.io/startbootstrap-stylish-portfolio/'
-    },
-    5 : {
-      id: 5,
-      url: 'https://startbootstrap.com/img/templates/stylish-portfolio.jpg',
-      linkTo: 'https://blackrockdigital.github.io/startbootstrap-stylish-portfolio/'
-    }
-  };
+  TemplateService.all().then(function(templates){
+    console.log(templates);
+    $scope.templates = templates;
+  });
 
   var textAnimate = function() {
      return $('.starting').hide().delay(700).show(1000).delay(1000);
@@ -58,7 +33,6 @@ frontApp.controller('CommunityIndexCtrl',
       $('#template'+template_id).toggleClass('bg-info active');
       $scope.selected = template_id;
     }
-
   };
 
   $scope.go = function() {

@@ -12,6 +12,6 @@ app.directive('comment', [function () {
     controller: 'CommentCtrl',
     controllerAs: 'vm',
     scope: {},
-    templateUrl: 'templates/choose_resource/comment.html'
+    templateUrl: '/templates/choose_resource/comment.html'
   };
 }]);

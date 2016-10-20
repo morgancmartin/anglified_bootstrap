@@ -41,7 +41,7 @@ function (ResourceService, $element, $uibModal, ResourceGenerator, $injector) {
     var parentElem = angular.element($element);
     var modalInstance = $uibModal.open({
       animation: true,
-      templateUrl: 'templates/choose_resource/comment_preview_modal.html',
+      templateUrl: '/templates/choose_resource/comment_preview_modal.html',
       controller: 'CommentModalCtrl',
       controllerAs: 'modal',
       size: size,

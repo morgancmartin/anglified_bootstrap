@@ -40,18 +40,22 @@
             <div ng-click="selectTemplate(template.id)" class="template-cards card col-xs-3" ng-repeat="template in templates" id="template{{template.id}}">
               <!--Card image-->
               <div class="view overlay hm-white-slight waves effect">
-                  <img src="{{template.url}}" class="img-fluid" alt="">
-                  <a href="{{template.linkTo}}"
+                <img src="{{template.image_url}}" class="img-fluid" alt="">
+                  <a href="{{template.preview_url}}"
                   target="_blank" class="btn btn-md btn-success"> Preview </a>
-
               </a>
               </div>
 
             </div>
             <!--/.Card-->
 
+            <!-- <div ng-if="isSelection()"> -->
+              <%#= link_to 'Create your Portfolio Website!',  templates_path(template.id)%>
+            <!-- </div> -->
+            <div ng-if="isSelection()">
+              <a href="templates/{{selected}}">Create your Portfolio Website!</a>
+            </div>
             <button type="button"
-                    ng-click="go()"
                     id="submit-template"
                     ng-if="isSelection()"
                     class="btn btn-warning btn-lg btn-block">Create your Portfolio Website!</button>

@@ -18,12 +18,13 @@ class GithubApi
   end
 
   def commit_directory(repo_name, commit_message, directory_path)
-    Dir.glob("#{directory_path}/*") do |f|
+    Dir.glob("#{directory_path}*") do |f|
       create_commit(repo_name, commit_message, f) if File.file?(f)
     end
   end
 
   def create_commit(repo_name, commit_message, file_path)
+    puts 'commiting file: ' + file_path
     repo = "#{@user.login}/#{repo_name}"
     ref = 'heads/master'
     my_content = File.read(file_path)
@@ -40,4 +41,73 @@ class GithubApi
     @client.update_ref(repo, ref, sha_new_commit)
   end
 
+  def repo_contents(repo_name, directory = nil)
+    @client.contents(repo_name, path: directory)
+  end
+
+  def get_template_index_url(repo_name, directory = nil)
+    contents = repo_contents(repo_name, directory)
+    contents.each do |repo_content|
+      if repo_content[:name] == 'index.html'
+        return repo_content[:download_url]
+      elsif repo_content[:type] == 'dir'
+        index = get_template_index_url(repo_name, repo_content[:name])
+        return index if index
+      end
+    end
+    nil
+  end
+
+  def get_template_css_urls(repo_name, directory = nil)
+    contents = repo_contents(repo_name, directory)
+    files = []
+    contents.each do |repo_content|
+      if file_extension_of(repo_content[:name]) == 'css'
+        files.push(repo_content[:download_url])
+      elsif repo_content[:type] == 'dir'
+        if directory
+          inner_directory = "#{directory}/#{repo_content[:name]}"
+        else
+          inner_directory = repo_content[:name]
+        end
+        inner_files = get_template_css_urls(repo_name, inner_directory)
+        files += inner_files
+      end
+    end
+    files
+  end
+
+  def get_template_js_urls(repo_name, directory = nil)
+    contents = repo_contents(repo_name, directory)
+    files = []
+    contents.each do |repo_content|
+      if file_extension_of(repo_content[:name]) == 'js'
+        files.push(repo_content[:download_url])
+      elsif repo_content[:type] == 'dir'
+        if directory
+          inner_directory = "#{directory}/#{repo_content[:name]}"
+        else
+          inner_directory = repo_content[:name]
+        end
+        inner_files = get_template_js_urls(repo_name, inner_directory)
+        files += inner_files
+      end
+    end
+    files
+  end
+
+  def file_extension_of(file_name)
+    splits = file_name.split('.')
+    if splits.length > 1
+      return splits.last
+    end
+    nil
+  end
+
+  def push_final_html_to_github
+    repo_name = create_repo
+    puts 'Created Repo: ' + repo_name
+    commit_directory(repo_name, 'new page', 'public/repo/')
+    "https://github.com/AnglifiedBootstrap/#{repo_name}"
+  end
 end

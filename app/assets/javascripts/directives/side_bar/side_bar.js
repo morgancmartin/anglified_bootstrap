@@ -21,6 +21,6 @@ app.directive('sideBar', function () {
     controllerAs: 'side',
     restrict: 'E',
     scope: {},
-    templateUrl: 'templates/side_bar/side_bar.html'
+    templateUrl: '/templates/side_bar/side_bar.html'
   };
 });

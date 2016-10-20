@@ -1,20 +1,13 @@
 # coding: utf-8
 require 'open-uri'
+require 'css_parser'
 
 class TemplateExtender
   attr_reader :doc
+  include CssParser
 
-  def initialize(file_name = nil)
-    # if file_name
-    #   file_loc = "https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-#{file_name}/master/index.html"
-    #   @doc = Nokogiri::HTML(open(file_loc))
-    #   @file_name = file_name
-    # else
-    @doc = File.open("public/templates/new-age/index.html") do |f|
-      Nokogiri::HTML(f)
-      # end
-    end
-    @file_name = 'new-age'
+  def initialize(index_url = nil)
+    @doc = Nokogiri::HTML(open(index_url)) if index_url
   end
 
   def run
@@ -47,6 +40,8 @@ class TemplateExtender
         node.remove
       end
     end
+    @body = @doc.css('body').first
+    # add_template_css
   end
 
   def add_ng_controller_to_body(node)
@@ -136,6 +131,40 @@ class TemplateExtender
     checkbox = Nokogiri::XML::Node.new "to-checkbox", @doc
     checkbox['ng-show'] = 'editStates.section'
     checkbox
+  end
+
+  def add_stylesheet_to_body(body_node, stylesheet_link)
+    parser = CssParser::Parser.new
+    parser.load_uri!(stylesheet_link)
+    contents = parser.to_s
+    style = Nokogiri::XML::Node.new "style", @doc
+    style.content = contents
+    body_node.add_child(style)
+  end
+
+  def add_script_to_body(body_node, script_link)
+    parser = CssParser::Parser.new
+    parser.load_uri!(script_link)
+    contents = parser.to_s
+    script = Nokogiri::XML::Node.new "script", @doc
+    script.content = contents
+    body_node.add_child(script)
+  end
+
+  def add_template_css
+    # css_urls = GithubApi.new.get_template_css_urls(@template.repo_name)
+    css_urls = GithubApi.new.get_template_css_urls('BlackrockDigital/startbootstrap-new-age')
+    css_urls.each do |url|
+      add_stylesheet_to_body(@body, url)
+    end
+  end
+
+  def add_template_js
+    # js_urls = GithubApi.new.get_template_js_urls(@template.repo_name)
+    js_urls = GithubApi.new.get_template_js_urls('BlackrockDigital/startbootstrap-new-age')
+    js_urls.each do |url|
+      add_stylesheet_to_body(@body, url)
+    end
   end
 
 end

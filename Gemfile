@@ -6,6 +6,7 @@ gem 'httparty'
 gem 'awesome_print', require: 'ap'
 gem 'nokogiri'
 gem 'tinymce-rails'
+gem 'css_parser'
 
 #angular
 gem 'angularjs-rails'

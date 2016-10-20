@@ -5,7 +5,7 @@
       edit: '<',
       onToggle: '&'
     },
-    templateUrl: 'templates/edit_tinymce/edit_tinymce.html',
+    templateUrl: '/templates/edit_tinymce/edit_tinymce.html',
     link: function (scope) {
       scope.toggleMCEState = function () {
         var stateObj = {

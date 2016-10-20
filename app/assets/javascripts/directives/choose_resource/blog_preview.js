@@ -43,7 +43,7 @@ function (ResourceService, $uibModal, $element, ResourceGenerator, $injector) {
     var parentElem = angular.element($element);
     var modalInstance = $uibModal.open({
       animation: true,
-      templateUrl: 'templates/choose_resource/blog_preview_modal.html',
+      templateUrl: '/templates/choose_resource/blog_preview_modal.html',
       controller: 'BlogModalCtrl',
       controllerAs: 'modal',
       size: size,

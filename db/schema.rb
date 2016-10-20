@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017185456) do
+ActiveRecord::Schema.define(version: 20161020041651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,18 @@ ActiveRecord::Schema.define(version: 20161017185456) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["html_id"], name: "index_styles_on_html_id", using: :btree
+  end
+
+  create_table "templates", force: :cascade do |t|
+    t.string   "title"
+    t.string   "category"
+    t.integer  "rating"
+    t.integer  "times_published"
+    t.string   "image_url"
+    t.string   "repo_name"
+    t.string   "preview_url"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|
