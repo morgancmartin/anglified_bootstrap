@@ -29,7 +29,15 @@ function (ResourceService, $element, $uibModal, ResourceGenerator, $injector) {
     return vm.comments.all();
   };
 
+  // Toggle for ng-class.
+  vm.active = false;
+  vm.toggleActive = function () {
+    vm.active = !vm.active;
+    return vm.active;
+  };
+
   vm.open = function (size) {
+    vm.toggleActive();
     var parentElem = angular.element($element);
     var modalInstance = $uibModal.open({
       animation: true,
@@ -53,6 +61,6 @@ app.directive('commentPreview', [function () {
     controllerAs: 'comment',
     bindToController: true,
     restrict: 'E',
-    template: "<i class='fa fa-comments-o click' ng-click='comment.open()'></i>"
+    template: "<i class='fa fa-comments-o click' ng-class=\"{\'active\': comment.active}\" ng-click='comment.open()'></i>"
   };
 }]);

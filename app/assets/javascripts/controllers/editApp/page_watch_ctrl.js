@@ -88,16 +88,12 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, 
   ----------------------------------------------------
   */
 
-  $scope.mce = function(event) {
-    tinyMCEService.callMCE(event);
-  };
-
   $scope.$watch('editStates.tinymce', function(newVal) {
     if (newVal) {
-      angular.element('.textable').on('click', $scope.mce);
+      angular.element('.textable').on('click', tinyMCEService.callMCE);
     } else {
       tinyMCEService.clearEditors();
-      angular.element('.textable').off('click', $scope.mce);
+      angular.element('.textable').off('click', tinyMCEService.callMCE);
       console.log("tinyMCE listeners OFF");
     }
   });
