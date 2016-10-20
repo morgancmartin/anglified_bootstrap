@@ -53,7 +53,7 @@ function( _, userEditService, $timeout) {
         stub.miniMCE(id);
         break;
       case 'IMG':
-        console.log('hi image not rdy 4 u yet');
+        stub.imageMCE(id);
         break;
     default:
         stub.defaultMCE(id);
@@ -74,20 +74,33 @@ function( _, userEditService, $timeout) {
     });
   };
 
+  stub.imageMCE = function(id) {
+    tinymce.init({
+      selector: ('#' + id),
+      forced_root_block: false,
+      plugins: "image",
+      menubar: false,
+      toolbar: "image",
+      image_list: [
+        {title: 'My image 1', value: 'http://www.tinymce.com/my1.gif'},
+        {title: 'My image 2', value: 'http://www.moxiecode.com/my2.gif'}
+      ],
+  image_advtab: true
+    });
+  };
+
+
   stub.defaultMCE = function(id) {
     tinymce.init({
       selector: ('#' + id),
-      plugins: 'link image code wordcount',
-      toolbar: 'myimage | close | undo redo | bold italic | alignleft aligncenter alignright | code',
+      forced_root_block: false,
+      themes: "modern",
+      plugins: 'link image code wordcount textcolor',
+      toolbar: 'myimage | close | bold italic | alignleft aligncenter alignright | forecolor backcolor | code',
+      textcolor_cols: "5",
       menubar: false,
+      autoresize_on_init: true,
       setup: function (editor) {
-        // editor.addButton('mybutton', {
-        //   text: 'ClickMe',
-        //   icon: false,
-        //   onclick: function () {
-        //     editor.insertContent('<button class="btn btn-info">DoNothing</button>');
-        //   }
-        // });
         editor.addButton('close', {
           text: 'Exit',
           icon: false,
