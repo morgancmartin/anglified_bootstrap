@@ -31,9 +31,10 @@ var app = angular.module('editApp',
 ['restangular', 'Devise', 'ui.bootstrap', "ui.router", "ui.tinymce"]);
 
 // Error logging.
-app.run([function($rootScope){
-  $rootScope.$on("$stateChangeError", console.log.bind(console));
-}]);
+// COMMENTED OUT FOR PRODUCTION
+// app.run([function($rootScope){
+//   $rootScope.$on("$stateChangeError", console.log.bind(console));
+// }]);
 
 app.factory('_', ['$window', function($window){
   return $window._;
