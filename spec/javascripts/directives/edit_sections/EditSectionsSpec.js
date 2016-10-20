@@ -1,3 +1,5 @@
+// Needs nodejs.
+
 describe('editSections', function () {
   beforeEach(module('editApp'));
 
@@ -11,6 +13,9 @@ describe('editSections', function () {
     scope.edit = false;
 
     // Set up the back end.
+    // *note: this only tells jasmine to return a string
+    // build a helper module; inject it; helper module will capture responses
+
     $httpBackend.whenGET('templates/edit_sections/edit_sections.html').respond(200, '');
 
     // Stub an element.

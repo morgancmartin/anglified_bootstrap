@@ -6,8 +6,6 @@ function ($uibModalInstance, data) {
 
   vm.data = data;
 
-  console.log(data);
-
   vm.ok = function () {
    $uibModalInstance.close();
   };

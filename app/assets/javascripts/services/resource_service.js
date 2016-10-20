@@ -8,12 +8,14 @@ app.factory('ResourceService', ['_', function (_) {
   };
 
   srv.addResource = function (resource) {
+    var cachLength = Object.keys(_data.cached).length;
+    // _data.cached[cachLength] = resource;
     _data.cached.push(resource);
     return Promise.resolve(_data);
   };
 
   srv.all = function (resource) {
-    return Promise.resolve(_data);
+    return _data;
   };
 
   return srv;

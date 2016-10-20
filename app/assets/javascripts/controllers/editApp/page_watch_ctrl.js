@@ -69,7 +69,6 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, 
 
 
   $scope.nextState = function(slideName) {
-    console.log(slideName);
     if (slideName){
       $scope.count = $scope.states.indexOf(slideName.toString());
     } else {
