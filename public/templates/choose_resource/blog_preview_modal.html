@@ -11,7 +11,7 @@
       <button class='btn btn-primary btn-xs'>submit</button>
     </label><br>
 
-    <div class='well well-lg' ng-repeat='b in modal.data.cache'>
+    <div class='well well-lg' ng-repeat='b in modal.data.cached'>
       <h3>{{b.title}}</h3>
       <p class='lead'>created at {{b.created_at | date}} by {{b.author}}</p>
       <p>{{b.body}}</p><br>

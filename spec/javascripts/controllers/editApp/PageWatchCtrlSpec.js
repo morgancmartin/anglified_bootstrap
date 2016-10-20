@@ -9,8 +9,6 @@ describe('PageWatchCtrl', function() {
     $event = {};
 
     // Setting up $scope and controller.
-    // Jasmine complains about $scope.$watch
-    // $scope = {};
     $scope = $rootScope.$new();
     ctrl = $controller('PageWatchCtrl', {$scope: $scope});
 
