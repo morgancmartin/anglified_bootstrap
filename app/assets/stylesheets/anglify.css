@@ -31,8 +31,13 @@ body {
    height: 400px;
    background: #000;
    z-index: 10000000;
+   opacity: 0.7;
    top: 20%;
    border-radius: 15px;
+}
+
+.fa:hover, .fa:active {
+  color: #3b5998;
 }
 
 i.click {
