@@ -30,8 +30,16 @@ function (ResourceService, $uibModal, $element, ResourceGenerator, $injector) {
     return vm.blogs.all();
   };
 
+  // Toggle for ng-class.
+  vm.active = false;
+  vm.toggleActive = function () {
+    vm.active = !vm.active;
+    return vm.active;
+  };
+
   // Modal functionality.
   vm.open = function (size) {
+    vm.toggleActive();
     var parentElem = angular.element($element);
     var modalInstance = $uibModal.open({
       animation: true,
@@ -55,6 +63,6 @@ app.directive('blogPreview', function() {
     controllerAs: 'blog',
     bindToController: true,
     restrict: 'E',
-    template: "<i class='fa fa-book click' ng-click='blog.open()'></i>"
+    template: "<i class='fa fa-book click' ng-class=\"{\'active\': blog.active}\" ng-click='blog.open()'></i>"
   };
 });

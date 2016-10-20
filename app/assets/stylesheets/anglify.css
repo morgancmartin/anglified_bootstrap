@@ -36,7 +36,7 @@ body {
    border-radius: 15px;
 }
 
-.fa:hover, .fa:active {
+.fa:hover, i.active {
   color: #3b5998;
 }
 
