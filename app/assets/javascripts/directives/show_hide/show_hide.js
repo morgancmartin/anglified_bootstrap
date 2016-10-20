@@ -21,7 +21,7 @@ app.directive('showHide', ["$timeout", function($timeout) {
       // Difficult to test. Lots of side effects. Refactor if there's time.
       scope.compareWithCurrentState = function (slide) {
         if(slide !== el.attr('data-slide')){
-          el.removeClass('ng-hide-remove').show();
+          // el.removeClass('ng-hide-remove').show();
           el.addClass('ng-hide-add').hide();
         } else {
           el.removeClass('ng-hide-add').hide();
