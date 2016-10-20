@@ -12,6 +12,9 @@ app.factory('navSectionService',
       stub.clearNav();
       stub.addScrollButton(nextState);
       stub.addNavLink('home', 1, nextState);
+
+      //removing overlay temporrarilty
+      angular.element('#DIV_44').remove();
     })
   }
 

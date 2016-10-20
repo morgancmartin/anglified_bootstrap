@@ -45,28 +45,10 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, 
     $scope.$broadcast('states.getDataSlide');
     $scope.states.push(slideTag.attr('data-slide'));
 
-    $scope.addNavLink(slideTag.attr('data-slide'));
+    navSectionService.addNavLink(slideTag.attr('data-slide'), $scope.states.length, $scope.nextState);
+
     $scope.nextState(slideTag.attr('data-slide'));
   };
-
-  /**
-    ADRIAN_REFACTOR
-    **/
-  $scope.addNavLink = function(slideName) {
-    var index = $scope.states.length - 1;
-    var section = angular.element('<button>')
-      .attr('id', "nav='" + index + "'" )
-      .addClass('page-scroll textable btn btn-sm btn-primary')
-      .text(slideName);
-    angular.element('.nav.navbar-nav.navbar-right').append(
-      section);
-    section.click( function () {
-      console.log('the new index: ', index);
-      $scope.nextState(slideName);
-    });
-  }
-
-
 
   $scope.nextState = function(slideName) {
     if (slideName){
@@ -98,24 +80,7 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, 
     });
   };
 
-
   navSectionService.setUpNav($scope.nextState);
-  // var p1 = new Promise( function(resolve, reject) {
-  //    window.setTimeout( function() {
-  //     resolve(navSectionService.clearNav());
-  //     }, 0);
-  //   });
-
-  // var p2 = new Promise( function(resolve, reject) {
-  //     window.setTimeout( function() {
-  //       resolve(navSectionService.addScrollButton()
-  //         .click($scope.nextState() ));
-  //     }, 0);
-  //   });
-
-  // p1.then(function() { console.log('hi0'); p2.then(console.log('hi'))});
-
-  // .click( function() { $scope.nextState() });
 
   /*
   ----------------------------------------------------
