@@ -25,3 +25,5 @@
 
 # Ignore created templates
 /public/repo/*
+
+/public/assets/*

@@ -19,7 +19,7 @@ app.factory('ResourceGenerator',
 
       // Container for all data pertaining to the resource.
       var _data = {
-        cache: [],
+        cached: [],
         type: resource,
         one: undefined,
         added: undefined,
@@ -32,19 +32,19 @@ app.factory('ResourceGenerator',
         throw new Error(reason);
       }
 
-      function _cacheData (response) {
-        angular.copy(response,_data.cache);
+      function _cachedData (response) {
+        angular.copy(response,_data.cached);
         return _data;
       }
 
       function _addOne (response){
-        _data.cache.push(response);
+        _data.cached.push(response);
         _data.added = response;
         return _data;
       }
 
       function _updateOne (response){
-        var found = _.find(_data.cache, {id: response.id});
+        var found = _.find(_data.cached, {id: response.id});
         if (!found) throw new Error('Nothing to update!');
         angular.copy(response,found);
         _data.updated = found;
@@ -55,19 +55,19 @@ app.factory('ResourceGenerator',
         var found = _.find(model, {id: model.id});
         if (!found) throw new Error('Nothing to remove!');
         _data.destroyed = found;
-        _.remove(_data.cache, {id: model.id});
+        _.remove(_data.cached, {id: model.id});
         return _data;
       }
 
       function _queryAll (resource) {
         return restangular.all(resource)
           .getList()
-          .then(_cacheData)
+          .then(_cachedData)
           .catch(_logError);
       }
 
       rSrv.all = function () {
-        if (_.isEmpty(_data.cache)) {
+        if (_.isEmpty(_data.cached)) {
           return _queryAll(resource);
         } else {
           return _data;
@@ -75,12 +75,12 @@ app.factory('ResourceGenerator',
       };
 
       rSrv.one = function (id) {
-        if (_.isEmpty(_data.cache)) {
+        if (_.isEmpty(_data.cached)) {
           _queryAll(resource);
-          _data.one = _.find(_data.cache, {id: id});
+          _data.one = _.find(_data.cached, {id: id});
           return Promise.resolve(_data);
         } else {
-          _data.one = _.find(_data.cache, {id: id});
+          _data.one = _.find(_data.cached, {id: id});
           return Promise.resolve(_data);
         }
       };
