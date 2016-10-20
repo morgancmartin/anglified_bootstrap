@@ -1,12 +1,12 @@
-app.controller('CommentCtrl', function () {
+app.controller('CommentCtrl', [function () {
   var vm = this;
   vm.hideMe = true;
   vm.toggle = function () {
     vm.hideMe = !vm.hideMe;
   };
-});
+}]);
 
-app.directive('comment', function () {
+app.directive('comment', [function () {
   return {
     restrict: 'E',
     controller: 'CommentCtrl',
@@ -14,4 +14,4 @@ app.directive('comment', function () {
     scope: {},
     templateUrl: 'templates/choose_resource/comment.html'
   };
-});
+}]);

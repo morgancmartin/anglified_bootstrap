@@ -9,8 +9,6 @@ describe('PageWatchCtrl', function() {
     $event = {};
 
     // Setting up $scope and controller.
-    // Jasmine complains about $scope.$watch
-    // $scope = {};
     $scope = $rootScope.$new();
     ctrl = $controller('PageWatchCtrl', {$scope: $scope});
 
@@ -43,18 +41,18 @@ describe('PageWatchCtrl', function() {
       $scope.nextState();
     });
 
-    it("brings you to the start when you're at the last slide", function () {
+    it("should bring you to the start when you're at the last slide", function () {
       expect($scope.count).toEqual(0);
     });
 
-    it("brings you to the next slide when you're not at the end", function () {
+    it("should bring you to the next slide when you're not at the end", function () {
       $scope.nextState();
       expect($scope.count).toEqual(1);
     });
   });
 
   describe('sidebar.toggled', function () {
-    it('toggles the show/hide states of different parts of the page', function() {
+    it('should toggle the show/hide states of different parts of the page', function() {
       var editStates = {
         section: true
       };
@@ -64,7 +62,7 @@ describe('PageWatchCtrl', function() {
   });
 
   describe('checkboxValues', function () {
-    it("sets true for a checkbox when that checkbox is selected", function () {
+    it("should set true for a checkbox when that checkbox is selected", function () {
       var checkboxValue = 1;
       $rootScope.$emit('checkbox.value', checkboxValue);
       expect($scope.checkboxValues[checkboxValue]).toBe(true);

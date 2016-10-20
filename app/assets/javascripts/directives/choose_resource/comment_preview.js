@@ -47,7 +47,7 @@ function (ResourceService, $element, $uibModal, ResourceGenerator, $injector) {
   };
 }]);
 
-app.directive('commentPreview', function () {
+app.directive('commentPreview', [function () {
   return {
     controller: 'CommentPreviewCtrl',
     controllerAs: 'comment',
@@ -55,4 +55,4 @@ app.directive('commentPreview', function () {
     restrict: 'E',
     template: "<i class='fa fa-comments-o click' ng-click='comment.open()'></i>"
   };
-});
+}]);

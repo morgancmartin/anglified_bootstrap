@@ -1,4 +1,4 @@
-app.directive('showHide', [function () {
+app.directive('showHide', ["$timeout", function($timeout) {
 
   return {
     restrict: 'A',
@@ -25,6 +25,9 @@ app.directive('showHide', [function () {
         } else {
           el.removeClass('ng-hide-add').hide();
           el.addClass('ng-hide-remove').show();
+          $timeout(function(){
+            el.removeClass('ng-hide-remove');
+          }, 350);
         }
 
         scope.checkLessThanTwo(slide);
