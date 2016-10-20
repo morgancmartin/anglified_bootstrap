@@ -1,4 +1,4 @@
-app.directive('editMce', function () {
+  app.directive('editMce', [function () {
   return {
     restrict: 'E',
     scope: {
@@ -16,4 +16,4 @@ app.directive('editMce', function () {
       };
     }
   };
-});
+}]);
