@@ -11,7 +11,6 @@ app.directive('showHide', [function () {
         // Check if there are less than two slides left.
         // Then hide/show button.
         var slides = angular.element("[data-slide='" + slide + "']");
-        console.log("slides length = " + slides.length);
         if (slides.length < 2) {
           slides.find('.create-slide').hide();
         } else {
