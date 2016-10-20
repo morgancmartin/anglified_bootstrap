@@ -1,6 +1,6 @@
 app.controller('PageWatchCtrl',
-['$scope', '$rootScope', "_", 'submitService', 'tinyMCEService', 'userEditService',
-function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
+['$scope', '$rootScope', "_", 'submitService', 'tinyMCEService', 'userEditService', 'navSectionService',
+function($scope, $rootScope, _, submitService, tinyMCEService, userEditService, navSectionService){
 
   $scope.editStates = {
     section: false,
@@ -33,6 +33,9 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
   // should take it out of the main page and give it its own slide.
   $scope.createSlide = function($event){
     var slideTag = angular.element($event.currentTarget).closest('section');
+
+    console.log('this is the slideTag: ' , slideTag);
+
     if (!slideTag.length){
       slideTag = angular.element($event.currentTarget).closest('header');
     }
@@ -41,7 +44,10 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
     // Tell checkbox to call its getDataSlide function.
     $scope.$broadcast('states.getDataSlide');
     $scope.states.push(slideTag.attr('data-slide'));
-    $scope.nextState(slideTag.data('slide'));
+
+    navSectionService.addNavLink(slideTag.attr('data-slide'), $scope.states.length, $scope.nextState);
+
+    $scope.nextState(slideTag.attr('data-slide'));
   };
 
   $scope.nextState = function(slideName) {
@@ -73,6 +79,8 @@ function($scope, $rootScope, _, submitService, tinyMCEService, userEditService){
       console.log(reason);
     });
   };
+
+  navSectionService.setUpNav($scope.nextState);
 
   /*
   ----------------------------------------------------
